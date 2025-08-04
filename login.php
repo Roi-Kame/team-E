@@ -24,6 +24,17 @@
     </div>
     <?php
     // ユーザーネーム入力を受け取りcsvに保存(新規登録)
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // POSTされたときだけ保存処理
+        $username = $_POST['username'];
+        $filename = './data/user.csv';
+
+        $fp = fopen($filename, 'a');
+        fputcsv($fp, [$username]);
+        fclose($fp);
+    }
+
+
     ?>
 </body>
 

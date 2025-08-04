@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Asia/Tokyo');
 
-$filename = './data/file.csv';
+$filename = './data/task.csv';
 
 $date = date('Y-m-d');
 
@@ -14,7 +14,7 @@ fclose($fp);
 
 $id = $cnt;
 
-$file_name = $_POST['file-name'];
+$file_name = $_POST['task-name'];
 
 $record = [
     $id,
@@ -37,4 +37,4 @@ if (flock($fp, LOCK_EX)) {
 
 fclose($fp);
 
-header('location:index.php');
+header('location:task.php');

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一番最初の画面</title>
+</head>
+<body>
+    <form action="./file_complete.php" method="post">
+        <p>
+            <label for="file-name">ファイル名</label><br>
+            <input type="text" name="file-name" id="file-name">
+        </p>
+        <p>
+            <input type="submit" value="作成">
+        </p>
+    </form>
+
+    <?php
+    $filename = './data/file.csv';
+
+    $fp = fopen($filename, 'r');
+
+    while ($record = fgetcsv($fp)):?>
+    <p><?php echo $record[0] . ' ' . $record[1] ?></p>
+    <?php
+    endwhile;?>
+</body>
+</html>

@@ -14,7 +14,7 @@
         <label for="username">ユーザーネーム:</label>
         <input type="text" id="username" name="username" required>
         <br>
-        <input type="submit" value="ログイン">
+        <input type="submit" value="登録">
     </form>
     <?php
     // ユーザーネーム入力を受け取りcsvに保存(新規登録)

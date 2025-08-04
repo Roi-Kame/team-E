@@ -9,17 +9,16 @@
 </head>
 
 <body>
-    <h1>ログイン</h1>
+    <h1>新規登録</h1>
     <form action="login.php" method="post">
-        <label for="username">ユーザー名:</label>
+        <label for="username">ユーザーネーム:</label>
         <input type="text" id="username" name="username" required>
         <br>
-        <button type="submit">ログイン</button>
-
-
-        <?php
-        // ユーザーネーム入力を受け取りcsvに保存(新規登録)
-        ?>
+        <input type="submit" value="ログイン">
+    </form>
+    <?php
+    // ユーザーネーム入力を受け取りcsvに保存(新規登録)
+    ?>
 </body>
 
 </html>

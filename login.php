@@ -14,6 +14,11 @@
         <input type="text" id="username" name="username" required>
         <br>
         <button type="submit">ログイン</button>
+
+
+        <?php
+        // ユーザーネーム入力を受け取りcsvに保存(新規登録)
+        ?>
 </body>
 
 </html>

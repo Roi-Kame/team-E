@@ -49,8 +49,8 @@
         <p>
             <label for="status">ステータス</label><br>
             <select name="status-bloodtype">
-                <option value="status1">status1</option>
-                <option value="status2">status2</option>
+                <option value="status1">進行中</option>
+                <option value="status2">完了</option>
             </select>
         </p>
         <p>

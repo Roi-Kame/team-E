@@ -14,7 +14,6 @@
         <input type="text" id="username" name="username" required>
         <br>
         <button type="submit">ログイン</button>
-        <button type="button" onclick="location.href='register.php'">新規登録</button>
 </body>
 
 </html>

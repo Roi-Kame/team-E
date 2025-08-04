@@ -10,9 +10,10 @@
 
 <body>
     <h1>新規登録</h1>
-    <form action="login.php" method="post">
+    <form onsubmit="return validateForm()" action="login.php" method="post">
         <label for="username">ユーザーネーム:</label>
-        <input type="text" id="username" name="username" required>
+        <input type="text" id="username" name="username">
+        <p id="error" style="display:none;">ユーザーネームを入力してください</p>
         <br>
         <input type="submit" value="登録">
     </form>
@@ -30,6 +31,7 @@
 
 
     ?>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

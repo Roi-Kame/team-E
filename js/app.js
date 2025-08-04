@@ -138,3 +138,16 @@
 
 
 // 新規登録時入力項目に未入力等のエラーがないか検証
+function validateForm() {
+    let username = document.getElementById("username");
+    // 未入力と空白のみの入力をエラーに
+    if (username.value.trim() === "") {
+        document.getElementById("error").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("error").style.display = "none";
+        return true;
+    }
+
+
+}

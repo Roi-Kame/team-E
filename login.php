@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン 新規登録</title>
+    <!-- git pull origin main コミットする前のお約束 -->
 </head>
 
 <body>

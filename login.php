@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン 新規登録</title>
+    <title>新規登録</title>
     <!-- git pull origin main コミットする前のお約束 -->
 </head>
 
@@ -18,6 +18,17 @@
     </form>
     <?php
     // ユーザーネーム入力を受け取りcsvに保存(新規登録)
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // POSTされたときだけ保存処理
+        $username = $_POST['username'];
+        $filename = './data/user.csv';
+
+        $fp = fopen($filename, 'a');
+        fputcsv($fp, [$username]);
+        fclose($fp);
+    }
+
+
     ?>
 </body>
 

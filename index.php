@@ -27,6 +27,10 @@
                     </ul>
                 </nav>
             </header>
+            <section class="file-content-none">
+                **ここからファイル未選択時の右側（あとでコメントアウト）**
+                <p>ファイルを選択してください</p>
+            </section>
         </article>
         <aside class="aside">
             <div class="file-box">
@@ -61,9 +65,6 @@
             </section>
         </aside>
     </main>
-    <!-- ここまで左側 -->
-    **ここからファイル未選択時の右側（あとでコメントアウト）**
-    <p>ファイルを選択してください</p>
 </body>
 
 </html>

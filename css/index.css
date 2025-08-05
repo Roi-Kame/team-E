@@ -9,7 +9,8 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 24px;
     margin: 0;
-    max-width: 1280px;
+    overflow: hidden; /* body 全体のスクロールを無効化 */
+    height: 100vh;  /* ビューポートの高さを100%に設定 */
 }
 
 a {
@@ -117,7 +118,11 @@ li {
     color: #FFFFFF;
     font-size: 32px;
 }
-
+.file-list{
+    padding: 10px;
+    overflow-y: scroll; /* スクロール可能にする */
+    height: 100vh;
+}
 .file-list-item {
     margin: 20px 10px;
     padding: 10px;
@@ -140,6 +145,5 @@ li {
 /* file-content */
 .file-content-none {
     padding: 20px;
-    width: 100%;
     color: #FFFFFF;
 }

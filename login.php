@@ -13,7 +13,7 @@
     <div class="login-container">
         <h1>新規登録</h1>
         <form onsubmit="return validateForm()" action="login.php" method="post">
-            <div class="form-container">
+            <div>
                 <label for="username">ユーザーネーム</label>
                 <br>
                 <input type="text" id="username" name="username" laceholder="name" placeholder="name">

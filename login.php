@@ -10,13 +10,13 @@
 </head>
 
 <body>
-    <div id="login-container">
+    <div class="login-container">
         <h1>新規登録</h1>
         <form onsubmit="return validateForm()" action="login.php" method="post">
-            <div id="form-container">
+            <div>
                 <label for="username">ユーザーネーム</label>
                 <br>
-                <input type="text" id="username" name="username" laceholder="name">
+                <input type="text" id="username" name="username" laceholder="name" placeholder="name">
                 <p id="error" style="display:none;">ユーザーネームを入力してください</p>
                 <br>
                 <input type="submit" value="登録">
@@ -27,11 +27,21 @@
     // ユーザーネーム入力を受け取りcsvに保存(新規登録)
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // POSTされたときだけ保存処理
+        $day = date('Y-m-d');
         $username = $_POST['username'];
         $filename = './data/user.csv';
 
+        // 読み取りモードで開く
+        $read_fp = fopen($filename, 'r');
+        $id = 0;
+        while ($row = fgetcsv($read_fp)) {
+            $id = intval($row[0]);
+        }
+        $new_id = $id + 1;
+        fclose($read_fp);
+        // 追記モードで開く
         $fp = fopen($filename, 'a');
-        fputcsv($fp, [$username]);
+        fputcsv($fp, [$new_id, $day, $username]);
         fclose($fp);
     }
 

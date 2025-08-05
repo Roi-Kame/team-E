@@ -15,7 +15,7 @@
         <nav>
             <ul class="header-nav">
                 <li><a href="login.php">メンバー登録</a></li>
-                <li><a href="">メンバー一覧</a></li>
+                <li><a href="">メンバーリスト</a></li>
             </ul>
         </nav>
     </header>

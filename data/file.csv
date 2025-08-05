@@ -1,7 +1,5 @@
-0,aaa
-1,bbb
-2,aaa
-3,www
-4,ccc
-5,hhhh
-6,www
+id,ファイル名,登録日,消去済み
+1,aaa,2025-08-05,true
+2,www,2025-08-05,true
+3,hhh,2025-08-05,false
+4,ccc,2025-08-05,false

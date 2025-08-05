@@ -48,21 +48,24 @@
                 $fp = fopen($filename, 'r');
 
                 while ($record = fgetcsv($fp)): ?>
-                    <ul class="file-list-item">
-                        <a href="./task.php?file_id=<?php echo $record[0] ?>">
-                            <li><?php echo $record[1] ?></li>
-                        </a>
+                    <?php if($record[1] !== "ファイル名"):?>
+                    <!-- <ul class="file-list-item"> -->
+                        <li>
+                        <a href="./task.php?file_id=<?php echo $record[0]; ?>">
+                            <?php echo $record[1]; ?></a></li>
                         <form action="./file_delete.php" method="GET">
+                            <input type="hidden" name="id" value="<?php echo $record[0];?>">
                             <input type="submit" value="消去">
                         </form>
-                    </ul>
+                    <!-- </ul> -->
                 <?php
+                endif;
                 endwhile; ?>
             </section>
         </aside>
     </main>
     <!-- ここまで左側 -->
-    **ここからファイル未選択時の右側（あとでコメントアウト）**
+    <!-- **ここからファイル未選択時の右側（あとでコメントアウト）** -->
     <p>ファイルを選択してください</p>
 </body>
 

@@ -38,44 +38,59 @@ foreach($all_records as $record){
 ?>
 
 <body>
-    <header class="page-header wrapper">
-        <h1>ファイル名</h1>
-        <nav>
-            <ul class="header-nav">
-                <li><a href="login.php">メンバー登録</a></li>
-                <li><a href="">メンバー一覧</a></li>
-            </ul>
-        </nav>
-    </header>
-    <form action="./search.php" method="GET">
-        <input type="text" name="search-text" id="search-text" placeholder="ファイル名検索">
-        <input type="submit" value="検索">
-    </form>
-    <form action="./file_create.php">
-        <input type="submit" value="ファイル作成">
-    </form>
-    <div class="file_name">
-        <?php
-        $count = 0;
+    <main class="main">
+        <article class="article">
+            <header class="page-header wrapper">
+                <h1>ファイル名</h1>
+                <nav>
+                    <ul class="header-nav">
+                        <a href="login.php">
+                            <li>メンバー登録</li>
+                        </a>
+                        <a href="">
+                            <li>メンバー一覧</li>
+                        </a>
+                    </ul>
+                </nav>
+            </header>
+            <section class="file-content-none">
+                <!-- **ここからファイル未選択時の右側（あとでコメントアウト）** -->
+                <p>ファイルを選択してください</p>
+            </section>
+        </article>
+        <aside class="aside">
+            <div class="file-box">
+                <section class="file-search">
+                    <form action="./search.php" method="GET">
+                        <input type="text" name="search-text" id="search-text" placeholder="ファイル名検索">
+                    </form>
+                </section>
+                <section class="file-create">
+                    <form action="./file_create.php">
+                        <input type="submit" value="📁+">
+                    </form>
+                </section>
+            </div>
+            <section class="file_list">
+                <?php
+                $count = 0;
 
-        if($search_records == false):?>
-        <p>条件に一致するファイルはありません</p>
-        <?php else:
-        foreach($search_records as $record):?>
-            <p><a href="./task.php?file_id=<?php echo $record[0] ?>"><?php echo $record[1] ?></a></p>
-            <form action="./file_delete.php" method="GET">
-                <input type="hidden" name="id" value="<?php echo $record[0]?>">
-                <input type="submit" value="消去">
-            </form>
-        <?php
-        $count ++;
-        endforeach;
-        endif; ?>
-    </div>
-
-    ここまで左側
-    **ここからファイル未選択時の右側（あとでコメントアウト）**
-    <p>ファイルを選択してください</p>
+                if($search_records == false):?>
+                    <p>条件に一致するファイルはありません</p>
+                <?php else:
+                    foreach($search_records as $record):?>
+                        <p><a href="./task.php?file_id=<?php echo $record[0] ?>"><?php echo $record[1] ?></a></p>
+                        <form action="./file_delete.php" method="GET">
+                            <input type="hidden" name="id" value="<?php echo $record[0]?>">
+                            <input type="submit" value="消去">
+                        </form>
+                <?php
+                    $count ++;
+                    endforeach;
+                endif; ?>
+        </div>
+        <p>ファイルを選択してください</p>
+    </main>
 </body>
 
 </html>

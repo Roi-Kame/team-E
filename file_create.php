@@ -24,7 +24,7 @@
         </p>
     </form>
     <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
-        <p>そのファイル名は使えません。ファイル名を変更してください。</p>
+        <p>そのファイル名は存在しているため使えません。</p>
         <?php endif; ?>
     <script src="./js/app.js"></script>
 </body>

@@ -9,7 +9,7 @@ $fp = fopen($filename, 'r');
 $cnt = 0;
 $file_name_lst = [];
 while ($records = fgetcsv($fp)) {
-  if($cnt !== 0){
+  if($cnt !== 0 && $records[3] == 'false'){
     $file_name_lst[] = $records[1];
   }
   $cnt++;

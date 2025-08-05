@@ -35,8 +35,8 @@
         <aside class="aside">
             <div class="file-box">
                 <section class="file-search">
-                    <form action="./search.php" method="POST">
-                        <input type="text" name="file-name" id="file-name" placeholder="ファイル検索">
+                    <form action="./search.php" method="GET">
+                        <input type="text" name="search-text" id="search-text" placeholder="ファイル名検索">
                     </form>
                 </section>
                 <section class="file-create">

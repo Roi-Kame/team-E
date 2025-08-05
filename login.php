@@ -16,7 +16,7 @@
             <div class="form-container">
                 <label for="username">ユーザーネーム</label>
                 <br>
-                <input type="text" id="username" name="username" laceholder="name">
+                <input type="text" id="username" name="username" laceholder="name" placeholder="name">
                 <p id="error" style="display:none;">ユーザーネームを入力してください</p>
                 <br>
                 <input type="submit" value="登録">

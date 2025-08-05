@@ -27,12 +27,16 @@
                     </ul>
                 </nav>
             </header>
+            <section class="file-content-none">
+                **ここからファイル未選択時の右側（あとでコメントアウト）**
+                <p>ファイルを選択してください</p>
+            </section>
         </article>
         <aside class="aside">
             <div class="file-box">
                 <section class="file-search">
-                    <form action="./search.php" method="GET">
-                        <input type="text" name="search-text" id="search-text" placeholder="ファイル名検索">
+                    <form action="./search.php" method="POST">
+                        <input type="text" name="file-name" id="file-name" placeholder="ファイル検索">
                     </form>
                 </section>
                 <section class="file-create">
@@ -48,25 +52,19 @@
                 $fp = fopen($filename, 'r');
 
                 while ($record = fgetcsv($fp)): ?>
-                    <?php if($record[1] !== "ファイル名"):?>
-                    <!-- <ul class="file-list-item"> -->
-                        <li>
-                        <a href="./task.php?file_id=<?php echo $record[0]; ?>">
-                            <?php echo $record[1]; ?></a></li>
-                        <form action="./file_delete.php" method="GET">
-                            <input type="hidden" name="id" value="<?php echo $record[0];?>">
+                    <ul class="file-list-item">
+                        <a href="./task.php?file_id=<?php echo $record[0] ?>">
+                            <li><?php echo $record[1] ?></li>
+                        </a>
+                        <form action="./file_delete.php" method="POST">
                             <input type="submit" value="消去">
                         </form>
-                    <!-- </ul> -->
+                    </ul>
                 <?php
-                endif;
                 endwhile; ?>
             </section>
         </aside>
     </main>
-    <!-- ここまで左側 -->
-    <!-- **ここからファイル未選択時の右側（あとでコメントアウト）** -->
-    <p>ファイルを選択してください</p>
 </body>
 
 </html>

@@ -15,5 +15,8 @@
             <input type="submit" value="ファイル作成">
         </p>
     </form>
+    <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
+    <p>そのファイル名は使えません。ファイル名を変更してください。</p>
+    <?php endif; ?>
 </body>
 </html>

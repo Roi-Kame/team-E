@@ -21,8 +21,8 @@
             </ul>
         </nav>
     </header>
-    <form action="./search.php" method="POST">
-        <input type="text" name="file-name" id="file-name" placeholder="ファイル検索">
+    <form action="./search.php" method="GET">
+        <input type="text" name="search-text" id="search-text" placeholder="ファイル名検索">
         <input type="submit" value="検索">
     </form>
     <form action="./file_create.php">
@@ -34,12 +34,18 @@
 
         $fp = fopen($filename, 'r');
 
-        while ($record = fgetcsv($fp)): ?>
+        $count = 0;
+
+        while ($record = fgetcsv($fp)):
+        if($count !== 0 && $record[3] == 'false'):?>
             <p><a href="./task.php?file_id=<?php echo $record[0] ?>"><?php echo $record[1] ?></a></p>
-            <form action="./file_delete.php" method="POST">
+            <form action="./file_delete.php" method="GET">
+                <input type="hidden" name="id" value="<?php echo $record[0]?>">
                 <input type="submit" value="消去">
             </form>
         <?php
+        endif;
+        $count ++;
         endwhile; ?>
     </div>
 

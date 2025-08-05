@@ -28,7 +28,7 @@
                 </nav>
             </header>
             <section class="file-content-none">
-                **ここからファイル未選択時の右側（あとでコメントアウト）**
+                <!-- **ここからファイル未選択時の右側（あとでコメントアウト）** -->
                 <p>ファイルを選択してください</p>
             </section>
         </article>
@@ -51,16 +51,21 @@
 
                 $fp = fopen($filename, 'r');
 
-                while ($record = fgetcsv($fp)): ?>
+                $cnt = 0;
+                while ($record = fgetcsv($fp)):
+                if($cnt !== 0 && $record[3] == 'false'):?>
                     <ul class="file-list-item">
                         <a href="./task.php?file_id=<?php echo $record[0] ?>">
                             <li><?php echo $record[1] ?></li>
                         </a>
-                        <form action="./file_delete.php" method="POST">
+                        <form action="./file_delete.php" method="GET">
+                            <input type="hidden" name="id" value="<?php echo $record[0] ?>">
                             <input type="submit" value="消去">
                         </form>
                     </ul>
                 <?php
+                endif;
+                $cnt ++;
                 endwhile; ?>
             </section>
         </aside>

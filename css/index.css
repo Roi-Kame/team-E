@@ -6,22 +6,35 @@ html{
 body {
     font-family: "Inter", sans-serif;
     font-size: 24px;
+    margin: 0;
 }
 a {
     text-decoration: none;
     color: #000;
 }
 h1 {
-    font-size: 24px;
+    font-size: 32px;
     margin: 0;
 }
-/* ヘッダー */
+/* 全体(main) */
+.main {
+    order: 2;
+    display: flex;
+    justify-content: space-between;
+    background-color: #F0F0F0;
+}
+/* 入力欄(article) */
+.article {
+    order: 1;
+    width: 78%;
+}
 .wrapper {
     margin: 0 auto;
 }
 .page-header {
-    background-color: #f8f9fa;
-    padding: 20px;
+    height: 96px;
+    background-color: #4D648D;
+    padding: 10px 13%;
     display: flex;
     justify-content: space-between;
     align-items: center;   
@@ -31,11 +44,18 @@ h1 {
     list-style: none;
 }
 .header-nav li {
+    background-color: #FFFFFF;
     margin-left: 20px;
+    padding: 10px;
+    border-radius: 8px;
 }
 .header-nav a {
     color: #000000;
 }
 .header-nav a:hover {
     color: #666666;
+}
+/* サイド(aside) */
+.aside {
+    width: 22%;
 }

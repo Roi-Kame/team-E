@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/delete_confirm.css">
     <!-- git pull origin main コミットする前のお約束 -->
-    <title>Document</title>
+    <title>削除確認</title>
 </head>
 
 <body>

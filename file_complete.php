@@ -17,9 +17,10 @@ $id = $cnt;
 $file_name = $_POST['file-name'];
 
 $record = [
-    $id,
-    $file_name,
-    $date
+  $id,
+  $file_name,
+  $date,
+  'false'
 ];
 
 $fp = fopen($filename, 'a');
@@ -28,10 +29,10 @@ $fp = fopen($filename, 'a');
 if (flock($fp, LOCK_EX)) {
   // ファイル操作を実行する
   // CSVファイルに一行書き込む
-  fputcsv($fp,$record);
+  fputcsv($fp, $record);
   // ロック解除
-  flock($fp,LOCK_UN);
-}else{
+  flock($fp, LOCK_UN);
+} else {
   echo 'ファイルロックが失敗しました。';
 }
 

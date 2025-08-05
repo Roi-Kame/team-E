@@ -9,14 +9,17 @@ body {
 }
 
 .login-container {
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 600px;
     display: grid;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
 h1 {
+    font-size: 40px;
+    margin-top: auto;
+    margin-bottom: auto;
     text-align: center;
     color: #333;
 }
@@ -26,6 +29,11 @@ form {
     justify-content: center;
 }
 
+.form-container {
+    width: 400px;
+    padding: 20px;
+}
+
 
 label {
     font-size: 16px;
@@ -33,6 +41,10 @@ label {
 }
 
 input[type="text"] {
+    width: 100%;
+    max-width: 380px;
+    font-size: 16px;
+    color: #333;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;

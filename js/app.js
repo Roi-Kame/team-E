@@ -151,3 +151,16 @@ function validateForm() {
 
 
 }
+
+
+function create_file() {
+    console.log("関数呼び出し成功");
+    let file_name = document.getElementById("file-name");
+    if (file_name.value.trim() === "") {
+        document.getElementById("error").style.display = "block";
+        return false;
+    } else {
+        document.getElementById("error").style.display = "none";
+        return true;
+    }
+}

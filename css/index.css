@@ -26,7 +26,7 @@ h1 {
 /* 入力欄(article) */
 .article {
     order: 1;
-    width: 78%;
+    width: 72%;
 }
 .wrapper {
     margin: 0 auto;
@@ -57,5 +57,5 @@ h1 {
 }
 /* サイド(aside) */
 .aside {
-    width: 22%;
+    width: 28%;
 }

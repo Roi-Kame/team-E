@@ -4,8 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>最初の画面</title>
+    <link rel="stylesheet" href="./css/task.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header class="page-header wrapper">
+        <h1>ファイル名</h1>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="login.php">メンバー登録</a></li>
+                <li><a href="">メンバー一覧</a></li>
+            </ul>
+        </nav>
+    </header>
     <form action="./search.php" method="POST">
         <input type="text" name="file-name" id="file-name" placeholder="ファイル検索">
         <input type="submit" value="検索">

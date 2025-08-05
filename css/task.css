@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/* 共通 */
+html{
+    font-size: 100%;
+}
+body {
+    font-family: "Inter", sans-serif;
+    font-size: 24px;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+h1 {
+    font-size: 24px;
+    margin: 0;
+}
+/* ヘッダー */
+.wrapper {
+    margin: 0 auto;
+}
+.page-header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+}
+.header-nav {
+    display: flex;
+    list-style: none;
+}
+.header-nav li {
+    margin-left: 20px;
+}
+.header-nav a {
+    color: #000000;
+}
+.header-nav a:hover {
+    color: #666666;
+}

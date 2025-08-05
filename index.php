@@ -50,23 +50,23 @@
                 $filename = './data/file.csv';
 
                 $fp = fopen($filename, 'r');
-
                 $cnt = 0;
                 while ($record = fgetcsv($fp)):
-                if($cnt !== 0 && $record[3] == 'false'):?>
-                    <ul class="file-list-item">
-                        <a href="./task.php?file_id=<?php echo $record[0] ?>">
-                            <li><?php echo $record[1] ?></li>
-                        </a>
-                        <form action="./file_delete.php" method="GET">
-                            <input type="hidden" name="id" value="<?php echo $record[0] ?>">
-                            <input type="submit" value="消去">
-                        </form>
-                    </ul>
+                    if ($cnt !== 0 && $record[3] == 'false'): ?>
+                        <ul class="file-list-item">
+                            <a href="./task.php?file_id=<?php echo $record[0] ?>">
+                                <li><?php echo $record[1] ?></li>
+                            </a>
+                            <form action="./file_delete.php" method="GET">
+                                <input type="hidden" name="id" value="<?php echo $record[0] ?>">
+                                <input type="submit" value="消去">
+                            </form>
+                        </ul>
                 <?php
-                endif;
-                $cnt ++;
-                endwhile; ?>
+                    endif;
+                    $cnt++;
+                endwhile;
+                ?>
             </section>
         </aside>
     </main>

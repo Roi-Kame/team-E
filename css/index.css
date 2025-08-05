@@ -9,6 +9,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 24px;
     margin: 0;
+    max-width: 1280px;
 }
 
 a {
@@ -48,6 +49,7 @@ li {
     margin: 0 auto;
 }
 
+/* article header */
 .page-header {
     height: 96px;
     background-color: #4D648D;
@@ -75,6 +77,7 @@ li {
 .header-nav a:hover {
     color: #666666;
 }
+
 
 /* サイド(aside) */
 .aside {
@@ -125,6 +128,18 @@ li {
     align-items: center;
 }
 
-.file-list-item li{
+.file-list-item li {
     padding: 10px;
+}
+
+.article {
+    background-color: #1E1F26;
+    box-sizing: border-box;
+}
+
+/* file-content */
+.file-content-none {
+    padding: 20px;
+    width: 100%;
+    color: #FFFFFF;
 }

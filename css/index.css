@@ -1,21 +1,35 @@
 @charset "UTF-8";
+
 /* 共通 */
-html{
+html {
     font-size: 100%;
 }
+
 body {
     font-family: "Inter", sans-serif;
     font-size: 24px;
     margin: 0;
 }
+
 a {
     text-decoration: none;
     color: #000;
 }
+
 h1 {
     font-size: 32px;
     margin: 0;
 }
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
 /* 全体(main) */
 .main {
     order: 2;
@@ -23,39 +37,94 @@ h1 {
     justify-content: space-between;
     background-color: #F0F0F0;
 }
+
 /* 入力欄(article) */
 .article {
     order: 1;
     width: 72%;
 }
+
 .wrapper {
     margin: 0 auto;
 }
+
 .page-header {
     height: 96px;
     background-color: #4D648D;
     padding: 10px 13%;
     display: flex;
     justify-content: space-between;
-    align-items: center;   
+    align-items: center;
 }
+
 .header-nav {
     display: flex;
-    list-style: none;
 }
+
 .header-nav li {
     background-color: #FFFFFF;
     margin-left: 20px;
     padding: 10px;
     border-radius: 8px;
 }
+
 .header-nav a {
     color: #000000;
 }
+
 .header-nav a:hover {
     color: #666666;
 }
+
 /* サイド(aside) */
 .aside {
     width: 28%;
+    background-color: #283655;
+    border: #4D648D 1px solid;
+}
+
+.file-box {
+    border-bottom: #4D648D 1px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+}
+
+.file-search {
+    padding: 10px;
+}
+
+.file-search input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 24px;
+}
+
+.file-create {
+    padding: 10px;
+}
+
+.file-create input[type="submit"] {
+    padding: 10px;
+    background-color: #283655;
+    border: none;
+    color: #FFFFFF;
+    font-size: 32px;
+}
+
+.file-list-item {
+    margin: 20px 10px;
+    padding: 10px;
+    background-color: #D0E1F9;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-list-item li{
+    padding: 10px;
 }

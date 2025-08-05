@@ -29,27 +29,36 @@
             </header>
         </article>
         <aside class="aside">
-            <form action="./search.php" method="POST">
-                <input type="text" name="file-name" id="file-name" placeholder="ファイル検索">
-                <input type="submit" value="検索">
-            </form>
-            <form action="./file_create.php">
-                <input type="submit" value="ファイル作成">
-            </form>
-            <div class="file_name">
+            <div class="file-box">
+                <section class="file-search">
+                    <form action="./search.php" method="POST">
+                        <input type="text" name="file-name" id="file-name" placeholder="ファイル検索">
+                    </form>
+                </section>
+                <section class="file-create">
+                    <form action="./file_create.php">
+                        <input type="submit" value="📁+">
+                    </form>
+                </section>
+            </div>
+            <section class="file-list">
                 <?php
                 $filename = './data/file.csv';
 
                 $fp = fopen($filename, 'r');
 
                 while ($record = fgetcsv($fp)): ?>
-                    <p><a href="./task.php?file_id=<?php echo $record[0] ?>"><?php echo $record[1] ?></a></p>
-                    <form action="./file_delete.php" method="POST">
-                        <input type="submit" value="消去">
-                    </form>
+                    <ul class="file-list-item">
+                        <a href="./task.php?file_id=<?php echo $record[0] ?>">
+                            <li><?php echo $record[1] ?></li>
+                        </a>
+                        <form action="./file_delete.php" method="POST">
+                            <input type="submit" value="消去">
+                        </form>
+                    </ul>
                 <?php
                 endwhile; ?>
-            </div>
+            </section>
         </aside>
     </main>
     <!-- ここまで左側 -->

@@ -15,6 +15,11 @@
             <input type="submit" value="ファイル作成">
         </p>
     </form>
+    <form action="./index.php">
+        <p>
+            <input type="submit" value="前の画面に戻る">
+        </p>
+    </form>
     <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
     <p>そのファイル名は使えません。ファイル名を変更してください。</p>
     <?php endif; ?>

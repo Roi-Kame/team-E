@@ -126,17 +126,16 @@
                                     </form>
                                 </td>
                             </tr>
-                        <?php
+                    <?php
                         endif;
                     endwhile;
-                    if (!$task): ?>
-                        <tr>
-                            <td>タスクはありません。</td>
-                        </tr>
-                    <?php
-                    endif;
-                    fclose($fp); ?>
+                    ?>
                 </table>
+                <?php if (!$task): ?>
+                    <p>タスクはありません。</p>
+                <?php
+                endif;
+                fclose($fp); ?>
             </section>
         </article>
         <aside class="aside">

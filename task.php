@@ -90,34 +90,29 @@
             <section class="file-content">
                 <?php
                 $filename = './data/task.csv';
-
-                $fp = fopen($filename, 'r');
-
-                $cnt = 0;
-                $task_name_lst = [];
-                while ($record = fgetcsv($fp)):
-                    if ($record[0] == $file_id):
-                        $task_name_lst[] = $record[2];
-                        if ($cnt !== 0 && $record[8] == 'false'): ?>
-                            <div class="file-list-item">
-                                <ul>
-                                    <?php echo $record[2] ?>
-                                    <!-- echoで書いてるけど<p>とかがよかったらそっちで -->
-                                    <form action="./task_delete.php" method="GET">
-                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
-                                    </form>
-                                </ul>
-                            </div>
+                $fp = fopen($filename, "r");
+                $records = fgetcsv($fp);
+                ?>
+                <table>
+                    <tr>
+                        <th><?php echo $records[2]; ?></th>
+                        <th><?php echo $records[3]; ?></th>
+                        <!-- <th>残り日数</th> -->
+                        <th><?php echo $records[6]; ?></th>
+                        <th><?php echo $records[5]; ?></th>
+                        <th><?php echo $records[4]; ?></th>
+                    </tr>
                     <?php
-                        endif;
-                    endif;
-                    $cnt++;
-                endwhile;
-                if ($task_name_lst == false): ?>
-                    <p>タスクはありません。</p>
-                <?php endif; ?>
+                    while ($record = fgetcsv($fp)): ?>
+                        <tr>
+                            <td><?php echo $record[2] ?></td>
+                            <td><?php echo $record[3] ?></td>
+                            <!-- <td>今日 - 期間</td> -->
+                            <td><?php echo $record[6] ?></td>
+                            <td><?php echo $record[5] ?></td>
+                        </tr>
+                    <?php endwhile ?>
+                </table>
             </section>
         </article>
         <aside class="aside">

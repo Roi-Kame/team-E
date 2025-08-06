@@ -41,7 +41,7 @@
         fclose($read_fp);
         // 追記モードで開く
         $fp = fopen($filename, 'a');
-        fputcsv($fp, [$new_id, $day, $username]);
+        fputcsv($fp, [$new_id, $day, $username, "true"]);
         fclose($fp);
 
         header("Location: index.php");

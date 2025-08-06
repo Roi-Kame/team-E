@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最初の画面</title>
+    <title>検索後の画面</title>
     <link rel="stylesheet" href="./css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,15 +21,47 @@ if($st == ""){
 $filename = './data/file.csv';
 $fp = fopen($filename, 'r');
 
-$all_records = [];
+$all_file_records = [];
 
 while($record = fgetcsv($fp)){
-  $all_records[]=$record;
+  $all_file_records[]=$record;
 }
+fclose($fp);
+
+$filename = './data/task.csv';
+$fp = fopen($filename, 'r');
+
+$all_tantou_records = [];
+
+while($record = fgetcsv($fp)){
+  $all_tantou_records[]=$record;
+}
+
+
+$fp = fopen($filename, 'r');
+
+$all_task_records = [];
+
+while($record = fgetcsv($fp)){
+  $all_task_records[]=$record;
+}
+fclose($fp);
 
 $search_records = [];
 
-foreach($all_records as $record){
+foreach($all_file_records as $record){
+    if(str_contains($record[1], $st) && $record[3] == 'false'){
+        $search_records[] = [$record[0], $record[1]];
+    }
+}
+
+foreach($all_tantou_records as $record){
+    if(str_contains($record[1], $st) && $record[3] == 'false'){
+        $search_records[] = [$record[0], $record[1]];
+    }
+}
+
+foreach($all_task_records as $record){
     if(str_contains($record[1], $st) && $record[3] == 'false'){
         $search_records[] = [$record[0], $record[1]];
     }
@@ -47,7 +79,7 @@ foreach($all_records as $record){
                         <a href="login.php">
                             <li>メンバー登録</li>
                         </a>
-                        <a href="">
+                        <a href="./member_list.php">
                             <li>メンバー一覧</li>
                         </a>
                     </ul>
@@ -75,7 +107,7 @@ foreach($all_records as $record){
                 <?php
                 $count = 0;
 
-                if($search_records == false):?>
+                if(!empty($search_records)):?>
                     <p>条件に一致するファイルはありません</p>
                 <?php else:
                     foreach($search_records as $record):?>

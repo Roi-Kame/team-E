@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タスク一覧</title>
+    <title>タスク編集画面</title>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,11 +33,25 @@
             <!-- タスク作成 --------------------------------------------------------------------- -->
 
             <section class="task-create">
-                <?php $file_id = $_GET['file_id']; ?>
+                <?php
+                $task_id = $_GET['task_id'];
+                $file_id = $_GET['file_id'];
+                $filename = "./data/task.csv";
+
+                $fp = fopen($filename, "r");
+
+                $user_data = [];
+
+                while ($data = fgetcsv($fp)) {
+                    if ($data[0] == $file_id && $data[1] == $task_id) {
+                        $user_data = $data;
+                    }
+                }
+                ?>
                 <form action="./task_complete.php" method="POST">
                     <input type="hidden" name="file-id" id="file-id" value="<?php echo $file_id ?>">
                     <div class="task-create-top">
-                        <input class="task-name" type="text" name="task-name" placeholder="タスク名を入力">
+                        <input class="task-name" type="text" name="task-name" value="<?php echo $user_data[2] ?>">
                     </div>
                     <div class="task-create-bottom">
                         <?php
@@ -75,8 +89,8 @@
                             <option value="進行中">進行中</option>
                             <option value="完了">完了</option>
                         </select>
-                        <input class="date" type="date" name="task-kigen" id="task-kigen">
-                        <input type="submit" value="タスクを追加">
+                        <input class="date" type="date" name="task-kigen" id="task-kigen" value="<?php echo $user_data[4] ?>">
+                        <input type="submit" value="編集する">
                     </div>
                 </form>
                 <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
@@ -107,7 +121,8 @@
                     $task = false;
                     while ($record = fgetcsv($fp)):
                         if ($record[8] == 'false' && $record[0] == $file_id):
-                            $task = true; ?>
+                            $task = true; 
+                            if($record[1] == $task_id):?>
                             <tr>
                                 <td><?php echo $record[2] ?></td>
                                 <td><?php echo $record[3] ?></td>
@@ -138,10 +153,9 @@
                                 <td><?php echo $record[6] ?></td>
                                 <td><?php echo $record[5] ?></td>
                                 <td>
-                                    <form action="./edit_task.php" method="GET">
-                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="編集">
+                                    <form action="./task.php" method="GET">
+                                        <input hidden name="file_id" value="<?php echo $file_id ?>">
+                                        <input type="submit" value="編集中止">
                                     </form>
                                 </td>
                                 <td>
@@ -153,6 +167,7 @@
                                 </td>
                             </tr>
                         <?php
+                        endif;
                         endif;
                     endwhile;
                     if (!$task): ?>

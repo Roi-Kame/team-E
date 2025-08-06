@@ -28,6 +28,10 @@
                     </ul>
                 </nav>
             </header>
+
+
+            <!-- タスク作成 --------------------------------------------------------------------- -->
+
             <section class="task-create">
                 <?php $file_id = $_GET['file_id']; ?>
                 <form class="task-create-a" action="./task_complete.php" method="POST">
@@ -41,41 +45,44 @@
 
                     $all_user = [];
 
-                $count = 0;
-                while($record = fgetcsv($fp)){
-                    if($count !== 0 && $record[3] == "false"){
-                        $all_user[] = $record[2];
+                    $count = 0;
+                    while ($record = fgetcsv($fp)) {
+                        if ($count !== 0 && $record[3] == "false") {
+                            $all_user[] = $record[2];
+                        }
+                        $count++;
                     }
-                    $count ++;
-                }
-                fclose($fp);
-                if(empty($all_user) == false):?>
-                    <select name="tantou">
-                        <?php foreach ($all_user as $value): ?>
-                        <option hidden>担当者を選択</option>
-                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                        <?php endforeach; ?>
+                    fclose($fp);
+                    if (empty($all_user) == false): ?>
+                        <select name="tantou">
+                            <?php foreach ($all_user as $value): ?>
+                                <option hidden>担当者を選択</option>
+                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    <?php endif ?>
+                    <select name="status">
+                        <option hidden>進行状況</option>
+                        <option value="未開始">未開始</option>
+                        <option value="進行中">進行中</option>
+                        <option value="完了">完了</option>
                     </select>
-                <?php endif ?>
-                <select name="status">
-                    <option hidden>進捗度を選択</option>
-                    <option value="未開始">未開始</option>
-                    <option value="進行中">進行中</option>
-                    <option value="完了">完了</option>
-                </select>
-                <select name="yuusenn">
-                    <option hidden>優先度を選択</option>
-                    <option value="低">低</option>
-                    <option value="中">中</option>
-                    <option value="高">高</option>
-                </select>
-                <input type="submit" value="タスクを追加">
-            </form>
-            <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
-            <p>そのタスク名は存在しているため使えません。</p>
-            <?php endif; ?>
+                    <select name="yuusenn">
+                        <option hidden>優先度を選択</option>
+                        <option value="低">低</option>
+                        <option value="中">中</option>
+                        <option value="高">高</option>
+                    </select>
+                    <input type="submit" value="タスクを追加">
+                </form>
+                <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
+                    <p>そのタスク名は存在しているため使えません。</p>
+                <?php endif; ?>
+            </section>
 
-            <!-- ↓タスク一覧表示 -->
+
+            <!-- ↓タスク一覧表示 ------------------------------------------------------- -->
+
             <section class="file-content">
                 <?php
                 $filename = './data/task.csv';

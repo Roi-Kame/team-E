@@ -56,7 +56,7 @@
                         }
                         fclose($fp);
                         if (empty($all_user) == false): ?>
-                            <select name="tantou" multiple>
+                            <select name="tantou" multiple size="3">
                                 <?php foreach ($all_user as $value): ?>
                                     <option hidden>担当者を選択</option>
                                     <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
@@ -80,7 +80,7 @@
                     </div>
                 </form>
                 <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
-                    <p>そのタスク名は存在しているため使えません。</p>
+                    <p>そのタスク名は使えません。</p>
                 <?php endif; ?>
             </section>
 
@@ -95,44 +95,47 @@
                 $file_id = $_GET['file_id'];
                 ?>
                 <table>
-                    <tr>
-                        <th><?php echo $records[2]; ?></th>
-                        <th><?php echo $records[3]; ?></th>
-                        <th>残り日数</th>
-                        <th><?php echo $records[6]; ?></th>
-                        <th><?php echo $records[5]; ?></th>
-                        <th><?php echo $records[4]; ?></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th class="top-left"><?php echo $records[2]; ?></th>
+                            <th><?php echo $records[3]; ?></th>
+                            <th>残り日数</th>
+                            <th><?php echo $records[6]; ?></th>
+                            <th><?php echo $records[5]; ?></th>
+                            <th class="top-right"><?php echo $records[4]; ?></th>
+                        </tr>
+                    </thead>
                     <?php
                     date_default_timezone_set('Asia/Tokyo');
-                    $time = time();//今日のタイムスタンプ
+                    $time = time(); //今日のタイムスタンプ
                     $task = false;
-                    while ($record = fgetcsv($fp)): 
-                    if($record[8] == 'false' && $record[0] == $file_id):
-                    $task = true;?>
+                    while ($record = fgetcsv($fp)):
+                        if ($record[8] == 'false' && $record[0] == $file_id):
+                            $task = true; ?>
+                            <tr>
+                                <td class="top-left"><?php echo $record[2] ?></td>
+                                <td><?php echo $record[3] ?></td>
+                                <td>残り日数計算</td>
+                                <td><?php echo $record[6] ?></td>
+                                <td><?php echo $record[5] ?></td>
+                                <td class="top-right">
+                                    <form action="./task_delete.php" method="GET">
+                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
+                                        <input type="submit" value="消去">
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php
+                        endif;
+                    endwhile;
+                    if (!$task): ?>
                         <tr>
-                            <td><?php echo $record[2] ?></td>
-                            <td><?php echo $record[3] ?></td>
-                            <td>残り日数計算</td>
-                            <td><?php echo $record[6] ?></td>
-                            <td><?php echo $record[5] ?></td>
-                            <td>
-                                <form action="./task_delete.php" method="GET">
-                                    <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                    <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                    <input type="submit" value="消去">
-                                </form>
-                            </td>
+                            <td>タスクはありません。</td>
                         </tr>
-                    <?php 
+                    <?php
                     endif;
-                    endwhile; 
-                    if(!$task):?>
-                    <tr>
-                        <td>タスクはありません。</td>
-                    </tr>
-                    <?php 
-                    endif;fclose($fp);?>
+                    fclose($fp); ?>
                 </table>
             </section>
         </article>

@@ -27,9 +27,12 @@
                     </ul>
                 </nav>
             </header>
+            
+            <?php $file_id = $_GET['file_id']; ?>
             <form action="./task_complete.php" method="POST">
+                <input type="hidden" name="file-id" id="file-id" value="<?php echo $file_id ?>">
                 <input type="text" name="task-name" placeholder="タスク名を入力">
-                <input type="date" name="task-kigen" placeholder="0000-00-00">
+                <input type="date" name="task-kigen" id="task-kigen">
                 <?php
                 $filename = './data/user.csv';
 
@@ -73,8 +76,6 @@
                 $filename = './data/task.csv';
 
                 $fp = fopen($filename, 'r');
-
-                $file_id = $_GET['file_id'];
 
                 $cnt = 0;
                 $task_name_lst = [];

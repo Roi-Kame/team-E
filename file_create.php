@@ -30,21 +30,21 @@
             </header>
             <section class="file-content">
                 <!-- **ここからファイル未選択時の右側（あとでコメントアウト）** -->
-                <form onsubmit="return create_file()" action="./file_complete.php" method="post">
-                    <p>
-                        <label for="file-name">ファイル名</label><br>
+                <div class="file-create-box">
+                    <form onsubmit="return create_file()" action="./file_complete.php" method="post">
+
+                        <label class="label-faile-name" for="file-name">ファイル名</label>
                         <input type="text" name="file-name" id="file-name">
                         <label id="error" for="error" style="display: none">ファイル名を入力してください</label>
-                    </p>
-                    <p>
-                        <input type="submit" value="ファイル作成">
-                    </p>
-                </form>
-                <form action="./index.php">
-                    <p>
-                        <input type="submit" value="前の画面に戻る">
-                    </p>
-                </form>
+
+                        <input class="button-file-make" type="submit" value="ファイル作成">
+                    </form>
+                    <form class="button-back-box" action="./index.php">
+                        <p>
+                            <input class="button-back" type="submit" value="前の画面に戻る">
+                        </p>
+                    </form>
+                </div>
                 <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
                     <p>そのファイル名は存在しているため使えません。</p>
                 <?php endif; ?>

@@ -88,6 +88,68 @@ li {
 }
 
 /* ファイル作成 ---------------------------------------------------------------- */
+.file-create-box {
+    display: grid;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: #2C2C2C;
+    justify-content: center;
+    align-items: center;
+}
+
+#file-name {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+}
+
+#error {
+    color: #FF0000;
+    font-size: 16px;
+    display: none;
+}
+
+.button-file-make {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #444444;
+    color: #FFFFFF;
+    font-size: 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-file-make:hover {
+    background-color: #555555;
+}
+
+.button-back {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #444444;
+    color: #FFFFFF;
+    font-size: 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.button-back:hover {
+    background-color: #555555;
+}
+
+.button-back-box {
+    text-align: center;
+    margin-top: 20px;
+}
 
 /* サイド(aside) ----------------------------------------------------------------*/
 .aside {

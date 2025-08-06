@@ -28,13 +28,56 @@
                     </ul>
                 </nav>
             </header>
+            
+            <?php $file_id = $_GET['file_id']; ?>
+            <form action="./task_complete.php" method="POST">
+                <input type="hidden" name="file-id" id="file-id" value="<?php echo $file_id ?>">
+                <input type="text" name="task-name" placeholder="タスク名を入力">
+                <input type="date" name="task-kigen" id="task-kigen">
+                <?php
+                $filename = './data/user.csv';
+
+                $fp = fopen($filename, 'r');
+
+                $all_user = [];
+
+                $count = 0;
+                while($record = fgetcsv($fp)){
+                    if($count !== 0 && $record[3] == "false"){
+                        $all_user[] = $record[2];
+                    }
+                    $count ++;
+                }
+                fclose($fp);
+                if(empty($all_user)):?>
+                    <select name="tantou">
+                        <?php foreach ($all_user as $value): ?>
+                        <option hidden>担当者を選択</option>
+                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                <?php endif ?>
+                <select name="status">
+                    <option hidden>進捗度を選択</option>
+                    <option value="未開始">未開始</option>
+                    <option value="進行中">進行中</option>
+                    <option value="完了">完了</option>
+                </select>
+                <select name="yuusenn">
+                    <option hidden>優先度を選択</option>
+                    <option value="低">低</option>
+                    <option value="中">中</option>
+                    <option value="高">高</option>
+                </select>
+                <input type="submit" value="タスクを追加">
+            </form>
+            <!-- ↓一覧表示 -->
+            <section class="file-content-none">
             <section class="file-content">
                 <?php
                 $filename = './data/task.csv';
 
                 $fp = fopen($filename, 'r');
-
-                $file_id = $_GET['file_id'];
 
                 $cnt = 0;
                 $task_name_lst = [];

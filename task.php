@@ -36,6 +36,7 @@
                 <?php $file_id = $_GET['file_id']; ?>
                 <form action="./task_complete.php" method="POST">
                     <input type="hidden" name="file-id" id="file-id" value="<?php echo $file_id ?>">
+                    <input type="hidden" name="create-or-edit" id="create" value="create">
                     <div class="task-create-top">
                         <input class="task-name" type="text" name="task-name" placeholder="タスク名を入力">
                     </div>
@@ -56,7 +57,7 @@
                         }
                         fclose($fp);
                         if (empty($all_user) == false): ?>
-                            <select name="tantou" multiple>
+                            <select name="tantou">
                                 <?php foreach ($all_user as $value): ?>
                                     <option hidden>担当者を選択</option>
                                     <option value="<?php echo $value; ?>"><?php echo $value; ?></option>

@@ -94,7 +94,7 @@ foreach($all_task_records as $record){
             <div class="file-box">
                 <section class="file-search">
                     <form action="./search.php" method="GET">
-                        <input type="text" name="search-text" id="search-text" placeholder="ファイル名検索">
+                        <input type="text" name="search-text" id="search-text" placeholder="🔍ファイル名検索">
                     </form>
                 </section>
                 <section class="file-create">

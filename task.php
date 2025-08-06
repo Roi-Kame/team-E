@@ -41,37 +41,40 @@
 
                     $all_user = [];
 
-                    $count = 0;
-                    while ($record = fgetcsv($fp)) {
-                        if ($count !== 0 && $record[3] == "false") {
-                            $all_user[] = $record[2];
-                        }
-                        $count++;
+                $count = 0;
+                while($record = fgetcsv($fp)){
+                    if($count !== 0 && $record[3] == "false"){
+                        $all_user[] = $record[2];
                     }
-                    fclose($fp);
-                    if (empty($all_user)): ?>
-                        <select class="task-create-bottom" name="tantou">
-                            <?php foreach ($all_user as $value): ?>
-                                <option hidden>担当者を選択</option>
-                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    <?php endif ?>
-                    <select class="task-create-bottom" name="status">
-                        <option hidden>進捗度を選択</option>
-                        <option value="未開始">未開始</option>
-                        <option value="進行中">進行中</option>
-                        <option value="完了">完了</option>
+                    $count ++;
+                }
+                fclose($fp);
+                if(empty($all_user) == false):?>
+                    <select name="tantou">
+                        <?php foreach ($all_user as $value): ?>
+                        <option hidden>担当者を選択</option>
+                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                        <?php endforeach; ?>
                     </select>
-                    <select class="task-create-bottom" name="yuusenn">
-                        <option hidden>優先度を選択</option>
-                        <option value="低">低</option>
-                        <option value="中">中</option>
-                        <option value="高">高</option>
-                    </select>
-                    <input class="task-create-bottom" type="submit" value="タスクを追加">
-                </form>
-            </section>
+                <?php endif ?>
+                <select name="status">
+                    <option hidden>進捗度を選択</option>
+                    <option value="未開始">未開始</option>
+                    <option value="進行中">進行中</option>
+                    <option value="完了">完了</option>
+                </select>
+                <select name="yuusenn">
+                    <option hidden>優先度を選択</option>
+                    <option value="低">低</option>
+                    <option value="中">中</option>
+                    <option value="高">高</option>
+                </select>
+                <input type="submit" value="タスクを追加">
+            </form>
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
+            <p>そのタスク名は存在しているため使えません。</p>
+            <?php endif; ?>
+
             <!-- ↓タスク一覧表示 -->
             <section class="file-content">
                 <?php

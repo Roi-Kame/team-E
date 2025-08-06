@@ -1,0 +1,183 @@
+@charset "UTF-8";
+
+/* 共通 */
+html {
+    font-size: 100%;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    font-size: 24px;
+    margin: 0;
+    overflow: hidden;
+    /* body 全体のスクロールを無効化 */
+    height: 100vh;
+    /* ビューポートの高さを100%に設定 */
+    color: #FFFFFF;
+    border-collapse: collapse;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: normal;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+    color: #FFFFFF;
+}
+
+/* 全体(main) ----------------------------------------------------------------*/
+.main {
+    order: 2;
+    display: flex;
+    justify-content: space-between;
+    background-color: #2C2C2C;
+}
+
+/* 入力欄(article) ----------------------------------------------------------------*/
+.article {
+    order: 1;
+    width: 72%;
+}
+
+.wrapper {
+    margin: 0 auto;
+}
+
+/* 右側のヘッダー部分 ----------------------------------------------------------------*/
+.page-header {
+    height: 96px;
+    background-color: #444444;
+    padding: 10px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-nav {
+    display: flex;
+}
+
+.header-nav li {
+    background-color: #383838;
+    margin-left: 20px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.header-nav li:hover {
+    background-color: #4f4f4f;
+    color: #e5e5e5;
+}
+
+.header-nav a {
+    color: #FFFFFF;
+}
+
+/* ファイル作成 ---------------------------------------------------------------- */
+
+/* サイド(aside) ----------------------------------------------------------------*/
+.aside {
+    width: 28%;
+    background-color: #2C2C2C;
+    border: #444444 1px solid;
+}
+
+.file-box {
+    border-bottom: #444444 1px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+}
+
+/* .file-search {
+    padding: 10px 0px 10px 10px;
+} */
+
+.file-search input[type="text"] {
+    background-color: #FFFFFF;
+    width: 100%;
+    font-size: 24px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* .file-create {
+    padding: 10px;
+} */
+
+.file-create button {
+    padding: 10px;
+    background-color: #2C2C2C;
+    display: inline-block;
+    line-height: 0;
+}
+
+.file-create button img {
+    width: 100%;
+}
+
+.file-list {
+    padding: 10px;
+    overflow-y: scroll;
+    /* スクロール可能にする */
+    height: 100vh;
+}
+
+.file-list-item {
+    padding: 10px;
+}
+
+.file-list-item ul {
+    padding: 10px;
+    background-color: #383838;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-list-item ul:hover {
+    background-color: #444444;
+}
+
+.file-list-item li {
+    padding: 10px;
+}
+
+.file-list-item input[type="submit"] {
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: #2C2C2C;
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+.file-list-item input[type="submit"]:hover {
+    background-color: #383838;
+}
+
+.article {
+    background-color: #1E1F26;
+    box-sizing: border-box;
+}
+
+/* file-content */
+.file-content {
+    padding: 20px;
+}

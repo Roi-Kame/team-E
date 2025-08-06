@@ -10,6 +10,8 @@ $cnt = 0;
 while (fgetcsv($fp) !== false) {
   $cnt++;
 }
+
+
 fclose($fp);
 
 $id = $cnt;
@@ -20,6 +22,22 @@ $task_kigen = $_POST['task-kigen'];
 $tantou = $_POST['tantou'];
 $status = $_POST['status'];
 $yuusen = $_POST['yuusen'];
+
+$fp = fopen($filename, 'r');
+$cnt = 0;
+$task_name_lst = [];
+while ($record = fgetcsv($fp)) {
+  if($cnt !== 0){
+    $task_name_lst[] = $record[2];
+    }
+  $cnt++;
+}
+
+if(in_array($task_name, $task_name_lst)){
+  header("Location:task.php?file_id=$file_id&error=duplicate");
+  exit;
+}
+
 
 $record = [
     $file_id,

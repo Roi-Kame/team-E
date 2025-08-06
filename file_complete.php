@@ -7,14 +7,23 @@ $date = date('Y-m-d');
 
 $fp = fopen($filename, 'r');
 $cnt = 0;
-while (fgetcsv($fp) !== false) {
+$file_name_lst = [];
+while ($records = fgetcsv($fp)) {
+  if($cnt !== 0 && $records[3] == 'false'){
+    $file_name_lst[] = $records[1];
+  }
   $cnt++;
 }
 fclose($fp);
-
+// var_dump($file_name_lst);
 $id = $cnt;
 
 $file_name = $_POST['file-name'];
+
+if(in_array($file_name, $file_name_lst)){
+  header('Location: file_create.php?error=duplicate');
+  exit;
+}
 
 $record = [
   $id,

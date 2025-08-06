@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最初の画面</title>
+    <title>タスク一覧</title>
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,7 @@
                         <a href="login.php">
                             <li>メンバー登録</li>
                         </a>
-                        <a href="">
+                        <a href="./member_list.php">
                             <li>メンバーリスト</li>
                         </a>
                     </ul>
@@ -99,15 +99,25 @@
                         <th><?php echo $records[4]; ?></th>
                     </tr>
                     <?php
-                    while ($record = fgetcsv($fp)): ?>
+                    while ($record = fgetcsv($fp)): 
+                    if($record[8] == 'false'):?>
                         <tr>
                             <td><?php echo $record[2] ?></td>
                             <td><?php echo $record[3] ?></td>
                             <!-- <td>今日 - 期間</td> -->
                             <td><?php echo $record[6] ?></td>
                             <td><?php echo $record[5] ?></td>
+                            <td>
+                                <form action="./task_delete.php" method="GET">
+                                    <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                    <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
+                                    <input type="submit" value="消去">
+                                </form>
+                            </td>
                         </tr>
-                    <?php endwhile ?>
+                    <?php 
+                    endif;
+                    endwhile; ?>
                 </table>
             </section>
         </article>

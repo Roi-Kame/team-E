@@ -49,7 +49,7 @@
 
                         $count = 0;
                         while ($record = fgetcsv($fp)) {
-                            if ($count !== 0 && $record[3] == "false") {
+                            if ($count !== 0 && $record[3] == "true") {
                                 $all_user[] = $record[2];
                             }
                             $count++;

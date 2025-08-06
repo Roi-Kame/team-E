@@ -63,17 +63,17 @@
                                 <?php endforeach; ?>
                             </select>
                         <?php endif ?>
-                        <select name="status">
-                            <option hidden>進行状況</option>
-                            <option value="未開始">未開始</option>
-                            <option value="進行中">進行中</option>
-                            <option value="完了">完了</option>
-                        </select>
                         <select name="yuusenn">
                             <option hidden>優先度を選択</option>
                             <option value="低">低</option>
                             <option value="中">中</option>
                             <option value="高">高</option>
+                        </select>
+                        <select name="status">
+                            <option hidden>進行状況</option>
+                            <option value="未開始">未開始</option>
+                            <option value="進行中">進行中</option>
+                            <option value="完了">完了</option>
                         </select>
                         <input class="date" type="date" name="task-kigen" id="task-kigen">
                         <input type="submit" value="タスクを追加">
@@ -105,34 +105,57 @@
                     </tr>
                     <?php
                     date_default_timezone_set('Asia/Tokyo');
-                    $time = time();//今日のタイムスタンプ
                     $task = false;
-                    while ($record = fgetcsv($fp)): 
-                    if($record[8] == 'false' && $record[0] == $file_id):
-                    $task = true;?>
+                    while ($record = fgetcsv($fp)):
+                        if ($record[8] == 'false' && $record[0] == $file_id):
+                            $task = true; ?>
+                            <tr>
+                                <td><?php echo $record[2] ?></td>
+                                <td><?php echo $record[3] ?></td>
+                                <td>
+                                    <?php
+                                    $today = new DateTime();
+                                    $deadline = DateTime::createFromFormat('Y-m-d', $record[4]);
+
+                                    if ($deadline && $record[4] !== '0000-00-00') {
+                                        $deadline->setTime(0, 0, 0); // 時間を無視して日付だけ比べる
+                                        $today->setTime(0, 0, 0);
+
+                                        $diff = $today->diff($deadline);
+                                        $diff_days = (int)$diff->format('%r%a'); // 正負付きの差
+
+                                        if ($diff_days < 0) {
+                                            echo '期限切れ';
+                                        } elseif ($diff_days === 0) {
+                                            echo '今日';
+                                        } else {
+                                            echo $diff_days . '日';
+                                        }
+                                    } else {
+                                        echo '期限未設定';
+                                    }
+                                    ?>
+                                </td>
+                                <td><?php echo $record[6] ?></td>
+                                <td><?php echo $record[5] ?></td>
+                                <td>
+                                    <form action="./task_delete.php" method="GET">
+                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
+                                        <input type="submit" value="消去">
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php
+                        endif;
+                    endwhile;
+                    if (!$task): ?>
                         <tr>
-                            <td><?php echo $record[2] ?></td>
-                            <td><?php echo $record[3] ?></td>
-                            <td>残り日数計算</td>
-                            <td><?php echo $record[6] ?></td>
-                            <td><?php echo $record[5] ?></td>
-                            <td>
-                                <form action="./task_delete.php" method="GET">
-                                    <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                    <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                    <input type="submit" value="消去">
-                                </form>
-                            </td>
+                            <td>タスクはありません。</td>
                         </tr>
-                    <?php 
+                    <?php
                     endif;
-                    endwhile; 
-                    if(!$task):?>
-                    <tr>
-                        <td>タスクはありません。</td>
-                    </tr>
-                    <?php 
-                    endif;fclose($fp);?>
+                    fclose($fp); ?>
                 </table>
             </section>
         </article>

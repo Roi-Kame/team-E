@@ -30,10 +30,10 @@
             </header>
             <section class="task-create">
                 <?php $file_id = $_GET['file_id']; ?>
-                <form action="./task_complete.php" method="POST">
+                <form class="task-create-a" action="./task_complete.php" method="POST">
                     <input type="hidden" name="file-id" id="file-id" value="<?php echo $file_id ?>">
-                    <input type="text" name="task-name" placeholder="タスク名を入力">
-                    <input type="date" name="task-kigen" id="task-kigen">
+                    <input id="task-name" type="text" name="task-name" placeholder="タスク名を入力">
+                    <input class="task-create-bottom" type="date" name="task-kigen" id="task-kigen">
                     <?php
                     $filename = './data/user.csv';
 
@@ -50,26 +50,26 @@
                     }
                     fclose($fp);
                     if (empty($all_user)): ?>
-                        <select name="tantou">
+                        <select class="task-create-bottom" name="tantou">
                             <?php foreach ($all_user as $value): ?>
                                 <option hidden>担当者を選択</option>
                                 <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                             <?php endforeach; ?>
                         </select>
                     <?php endif ?>
-                    <select name="status">
+                    <select class="task-create-bottom" name="status">
                         <option hidden>進捗度を選択</option>
                         <option value="未開始">未開始</option>
                         <option value="進行中">進行中</option>
                         <option value="完了">完了</option>
                     </select>
-                    <select name="yuusenn">
+                    <select class="task-create-bottom" name="yuusenn">
                         <option hidden>優先度を選択</option>
                         <option value="低">低</option>
                         <option value="中">中</option>
                         <option value="高">高</option>
                     </select>
-                    <input type="submit" value="タスクを追加">
+                    <input class="task-create-bottom" type="submit" value="タスクを追加">
                 </form>
             </section>
             <!-- ↓タスク一覧表示 -->
@@ -89,8 +89,9 @@
                                 <ul>
                                     <?php echo $record[2] ?>
                                     <!-- echoで書いてるけど<p>とかがよかったらそっちで -->
-                                    <form action="./file_delete.php" method="GET">
-                                        <input type="hidden" name="id" value="<?php echo $record[0] ?>">
+                                    <form action="./task_delete.php" method="GET">
+                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
                                         <input type="submit" value="消去">
                                     </form>
                                 </ul>

@@ -109,6 +109,24 @@ li {
     color: #FFFFFF;
 }
 
+input#task-name {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: none;
+}
+
+input.task-create-a {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 8px;
+    border: none;
+    justify-content:baseline;
+}
 
 /* サイド(aside) ----------------------------------------------------------------*/
 .aside {

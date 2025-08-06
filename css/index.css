@@ -9,9 +9,12 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 24px;
     margin: 0;
-    overflow: hidden; /* body 全体のスクロールを無効化 */
-    height: 100vh;  /* ビューポートの高さを100%に設定 */
+    overflow: hidden;
+    /* body 全体のスクロールを無効化 */
+    height: 100vh;
+    /* ビューポートの高さを100%に設定 */
     color: #FFFFFF;
+    border-collapse: collapse;
 }
 
 a {
@@ -21,6 +24,7 @@ a {
 
 h1 {
     font-size: 32px;
+    font-weight: normal;
     margin: 0;
     color: #FFFFFF;
 }
@@ -43,7 +47,7 @@ li {
     background-color: #2C2C2C;
 }
 
-/* 入力欄(article) ------------------------------------------*/
+/* 入力欄(article) ----------------------------------------------------------------*/
 .article {
     order: 1;
     width: 72%;
@@ -57,7 +61,7 @@ li {
 .page-header {
     height: 96px;
     background-color: #444444;
-    padding: 10px 13%;
+    padding: 10px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -85,51 +89,61 @@ li {
 
 
 
-/* サイド(aside) ------------------------------------*/
+/* サイド(aside) ----------------------------------------------------------------*/
 .aside {
     width: 28%;
     background-color: #2C2C2C;
-    border: #4D648D 1px solid;
+    border: #444444 1px solid;
 }
 
 .file-box {
-    border-bottom: #4D648D 1px solid;
+    border-bottom: #444444 1px solid;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 10px;
 }
 
-.file-search {
-    padding: 10px;
-}
+/* .file-search {
+    padding: 10px 0px 10px 10px;
+} */
 
 .file-search input[type="text"] {
+    background-color: #FFFFFF;
     width: 100%;
+    font-size: 24px;
     padding: 10px;
     border: none;
     border-radius: 8px;
-    font-size: 24px;
 }
 
-.file-create {
+/* .file-create {
     padding: 10px;
+} */
+
+.file-create button {
+    padding: 10px;
+    background-color: #2C2C2C;
+    display: inline-block;
+    line-height: 0;
 }
 
-.file-create input[type="submit"] {
-    padding: 10px;
-    background-color: #283655;
-    border: none;
-    color: #FFFFFF;
-    font-size: 32px;
+.file-create button img {
+    width: 100%;
 }
-.file-list{
+
+.file-list {
     padding: 10px;
-    overflow-y: scroll; /* スクロール可能にする */
+    overflow-y: scroll;
+    /* スクロール可能にする */
     height: 100vh;
 }
+
 .file-list-item {
-    margin: 20px 10px;
+    padding: 10px;
+}
+
+.file-list-item ul {
     padding: 10px;
     background-color: #383838;
     border-radius: 8px;
@@ -138,12 +152,24 @@ li {
     align-items: center;
 }
 
-/* .file-list-item :hover {
-    background-color: aqua;
-} */
+.file-list-item ul:hover {
+    background-color: #444444;
+}
 
 .file-list-item li {
     padding: 10px;
+}
+
+.file-list-item input[type="submit"] {
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: #2C2C2C;
+    font-size: 24px;
+    border-radius: 8px;
+}
+
+.file-list-item input[type="submit"]:hover {
+    background-color: #383838;
 }
 
 .article {
@@ -152,6 +178,6 @@ li {
 }
 
 /* file-content */
-.file-content-none {
+.file-content {
     padding: 20px;
 }

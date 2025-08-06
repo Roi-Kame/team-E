@@ -72,7 +72,7 @@
                     <input type="submit" value="タスクを追加">
                 </form>
             </section>
-            <!-- ↓一覧表示 -->
+            <!-- ↓タスク一覧表示 -->
             <section class="file-content">
                 <?php
                 $filename = './data/task.csv';

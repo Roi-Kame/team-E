@@ -49,66 +49,72 @@ if ($crored == "create") {
   }
 
   $record = [
-  $file_id,
-  $id,
-  $task_name,
-  $tantou,
-  $task_kigen,
-  $status,
-  $yuusen,
-  $create_date,
-  'false'
-];
+    $file_id,
+    $id,
+    $task_name,
+    $tantou,
+    $task_kigen,
+    $status,
+    $yuusen,
+    $create_date,
+    'false'
+  ];
 
-// var_dump($record);
-fclose($fp);
-$fp = fopen($filename, 'a');
+  // var_dump($record);
+  fclose($fp);
+  $fp = fopen($filename, 'a');
 
-if (flock($fp, LOCK_EX)) {
-  fputcsv($fp, $record);
-  flock($fp, LOCK_UN);
+  if (flock($fp, LOCK_EX)) {
+    fputcsv($fp, $record);
+    flock($fp, LOCK_UN);
+  } else {
+    echo 'ファイルロックが失敗しました。';
+  }
+
+  fclose($fp);
 } else {
-  echo 'ファイルロックが失敗しました。';
-}
-
-fclose($fp);
-
-
-}else{
   $fp = fopen($filename, "r");
-while($record = fgetcsv($fp)){
-    if($record[2] !== $task_name or $record[0] !== $file_id or $record[1] !== $task_id){
-      $all_task_date[] = $record;
+  while ($record = fgetcsv($fp)) {
+    if ($record[0] !== $file_id or $record[1] !== $task_id) {
+        $all_task_date[] = $record;
     }
-}
+  }
 
-fclose($fp);
+  fclose($fp);
 
-$fp = fopen($filename, 'w');
+ foreach($all_task_date as $line){
+  if($line[2] == $task_name){
+      header("Location:task.php?file_id=$file_id&error=duplicate");
+      exit;
+    }
+  }
+ 
 
-$records = [
-  $file_id,
-  $id,
-  $task_name,
-  $tantou,
-  $task_kigen,
-  $status,
-  $yuusen,
-  $create_date,
-  'false'
-];
+  $fp = fopen($filename, 'w');
 
-if (flock($fp, LOCK_EX)) {
-  foreach($all_task_date as $record){
-  fputcsv($fp, $record);}
-  fputcsv($fp, $records);
-  flock($fp, LOCK_UN);
-} else {
-  echo 'ファイルロックが失敗しました。';
-}
+  $records = [
+    $file_id,
+    $task_id,
+    $task_name,
+    $tantou,
+    $task_kigen,
+    $status,
+    $yuusen,
+    $create_date,
+    'false'
+  ];
 
-fclose($fp);
+  if (flock($fp, LOCK_EX)) {
+    foreach ($all_task_date as $record) {
+      fputcsv($fp, $record);
+    }
+    fputcsv($fp, $records);
+    flock($fp, LOCK_UN);
+  } else {
+    echo 'ファイルロックが失敗しました。';
+  }
 
+  fclose($fp);
 }
 
 header("location:task.php?file_id=$file_id");

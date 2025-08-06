@@ -1,0 +1,23 @@
+.list {
+    background-color: gray;
+    height: 50px;
+}
+
+.delete {
+    text-align: right;
+}
+
+table {
+    width: 300px;
+    border-collapse: collapse;
+    border: none;
+}
+
+.member_list_inner td {
+    border: 1px solid black;
+}
+
+td {
+    font-size: large;
+    text-align: left;
+}

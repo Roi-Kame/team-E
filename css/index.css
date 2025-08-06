@@ -51,15 +51,13 @@ li {
 .article {
     order: 1;
     width: 72%;
-    background-color: #1E1F26;
-    box-sizing: border-box;
 }
 
 .wrapper {
     margin: 0 auto;
 }
 
-/* 右側のヘッダー部分 */
+/* 右側のヘッダー部分 ----------------------------------------------------------------*/
 .page-header {
     height: 96px;
     background-color: #444444;
@@ -89,7 +87,7 @@ li {
     color: #FFFFFF;
 }
 
-/* タスク作成 */
+/* タスク作成 ---------------------------------------------------------------- */
 
 .task-create {
     padding: 20px;
@@ -147,36 +145,6 @@ input.date:hover {
     align-items: center;
 }
 
-/* file-content */
-.file-content {
-    padding: 20px;
-    overflow-y: scroll;
-    height: 80vh;
-}
-
-.file-content table {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: separate;
-    border-spacing: 0 20px; 
-}
-
-.file-content th, .file-content td {
-    text-align: center;
-    background-color: #2C2C2C;
-    padding: 10px 0px;
-}
-
-.top-left {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-.top-right {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
-
 /* サイド(aside) ----------------------------------------------------------------*/
 .aside {
     width: 28%;
@@ -192,13 +160,22 @@ input.date:hover {
     padding: 20px 10px;
 }
 
+/* .file-search {
+    padding: 10px 0px 10px 10px;
+} */
+
 .file-search input[type="text"] {
     background-color: #FFFFFF;
     width: 100%;
     font-size: 24px;
     padding: 10px;
+    border: none;
     border-radius: 8px;
 }
+
+/* .file-create {
+    padding: 10px;
+} */
 
 .file-create button {
     padding: 10px;
@@ -249,4 +226,14 @@ input.date:hover {
 
 .file-list-item input[type="submit"]:hover {
     background-color: #383838;
+}
+
+.article {
+    background-color: #1E1F26;
+    box-sizing: border-box;
+}
+
+/* file-content */
+.file-content {
+    padding: 20px;
 }

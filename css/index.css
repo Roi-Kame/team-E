@@ -11,6 +11,7 @@ body {
     margin: 0;
     overflow: hidden; /* body 全体のスクロールを無効化 */
     height: 100vh;  /* ビューポートの高さを100%に設定 */
+    color: #FFFFFF;
 }
 
 a {
@@ -21,6 +22,7 @@ a {
 h1 {
     font-size: 32px;
     margin: 0;
+    color: #FFFFFF;
 }
 
 ul {
@@ -30,6 +32,7 @@ ul {
 
 li {
     list-style: none;
+    color: #FFFFFF;
 }
 
 /* 全体(main) */
@@ -37,10 +40,10 @@ li {
     order: 2;
     display: flex;
     justify-content: space-between;
-    background-color: #F0F0F0;
+    background-color: #2C2C2C;
 }
 
-/* 入力欄(article) */
+/* 入力欄(article) ------------------------------------------*/
 .article {
     order: 1;
     width: 72%;
@@ -53,7 +56,7 @@ li {
 /* article header */
 .page-header {
     height: 96px;
-    background-color: #4D648D;
+    background-color: #444444;
     padding: 10px 13%;
     display: flex;
     justify-content: space-between;
@@ -65,25 +68,27 @@ li {
 }
 
 .header-nav li {
-    background-color: #FFFFFF;
+    background-color: #383838;
     margin-left: 20px;
     padding: 10px;
     border-radius: 8px;
 }
 
+.header-nav li:hover {
+    background-color: #4f4f4f;
+    color: #e5e5e5;
+}
+
 .header-nav a {
-    color: #000000;
-}
-
-.header-nav a:hover {
-    color: #666666;
+    color: #FFFFFF;
 }
 
 
-/* サイド(aside) */
+
+/* サイド(aside) ------------------------------------*/
 .aside {
     width: 28%;
-    background-color: #283655;
+    background-color: #2C2C2C;
     border: #4D648D 1px solid;
 }
 
@@ -126,12 +131,16 @@ li {
 .file-list-item {
     margin: 20px 10px;
     padding: 10px;
-    background-color: #D0E1F9;
+    background-color: #383838;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
+/* .file-list-item :hover {
+    background-color: aqua;
+} */
 
 .file-list-item li {
     padding: 10px;
@@ -145,5 +154,4 @@ li {
 /* file-content */
 .file-content-none {
     padding: 20px;
-    color: #FFFFFF;
 }

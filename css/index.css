@@ -96,36 +96,53 @@ li {
 
 .task-create input {
     color: #FFFFFF;
-}
-
-.task-create input[type=date] {
     background-color: #383838;
     padding: 10px;
     border-radius: 8px;
-    border: none;
+}
+
+.task-create input[type="submit"]:hover {
+    background-color: #555555;
 }
 
 .task-create select {
     color: #FFFFFF;
+    background-color: #383838;
+    padding: 10px;
+    border-radius: 8px;
 }
 
-input#task-name {
-    width: 100%;
-    padding: 10px;
+.task-create select:hover {
+    background-color: #555555;
+}
+
+.task-create input,select {
+    height: 55px; 
+}
+
+input.task-name {
+    width: 90%;
     background-color: #ffffff;
     color: #000000;
-    border-radius: 8px;
+}
+
+input.date:hover {
+    background-color: #555555;
+}
+
+.task-create-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
-    border: none;
 }
 
-input.task-create-a {
-    padding: 10px;
-    background-color: #ffffff;
-    color: #000000;
-    border-radius: 8px;
-    border: none;
-    justify-content:baseline;
+.task-create-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content:center;
+    align-items: center;
 }
 
 /* サイド(aside) ----------------------------------------------------------------*/

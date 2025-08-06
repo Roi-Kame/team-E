@@ -56,7 +56,7 @@
                         }
                         fclose($fp);
                         if (empty($all_user) == false): ?>
-                            <select name="tantou">
+                            <select name="tantou" multiple>
                                 <?php foreach ($all_user as $value): ?>
                                     <option hidden>担当者を選択</option>
                                     <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
@@ -92,23 +92,28 @@
                 $filename = './data/task.csv';
                 $fp = fopen($filename, "r");
                 $records = fgetcsv($fp);
+                $file_id = $_GET['file_id'];
                 ?>
                 <table>
                     <tr>
                         <th><?php echo $records[2]; ?></th>
                         <th><?php echo $records[3]; ?></th>
-                        <!-- <th>残り日数</th> -->
+                        <th>残り日数</th>
                         <th><?php echo $records[6]; ?></th>
                         <th><?php echo $records[5]; ?></th>
                         <th><?php echo $records[4]; ?></th>
                     </tr>
                     <?php
+                    date_default_timezone_set('Asia/Tokyo');
+                    $time = time();//今日のタイムスタンプ
+                    $task = false;
                     while ($record = fgetcsv($fp)): 
-                    if($record[8] == 'false'):?>
+                    if($record[8] == 'false' && $record[0] == $file_id):
+                    $task = true;?>
                         <tr>
                             <td><?php echo $record[2] ?></td>
                             <td><?php echo $record[3] ?></td>
-                            <!-- <td>今日 - 期間</td> -->
+                            <td>残り日数計算</td>
                             <td><?php echo $record[6] ?></td>
                             <td><?php echo $record[5] ?></td>
                             <td>
@@ -121,7 +126,13 @@
                         </tr>
                     <?php 
                     endif;
-                    endwhile; ?>
+                    endwhile; 
+                    if(!$task):?>
+                    <tr>
+                        <td>タスクはありません。</td>
+                    </tr>
+                    <?php 
+                    endif;fclose($fp);?>
                 </table>
             </section>
         </article>

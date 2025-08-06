@@ -1,14 +1,13 @@
-ID,　日付,　USERNAME
-
-1,2025-08-05,りんちゃん
-2,2025-08-05,ゆうと
-3,2025-08-05,yuto
-4,2025-08-05,yuto
-5,2025-08-05,yuto
-6,2025-08-05,yuto
-7,2025-08-05,test1
-8,2025-08-05,yuto
-9,2025-08-05,yuto
-10,2025-08-05,yuto
-11,2025-08-05,filenametest
-12,2025-08-05,test
+ID,　日付,　USERNAME,　消去済
+1,2025-08-05,りんちゃん,false
+2,2025-08-05,ゆうと,false
+3,2025-08-05,yuto,false
+4,2025-08-05,yuto,false
+5,2025-08-05,yuto,false
+6,2025-08-05,yuto,false
+7,2025-08-05,test1,false
+8,2025-08-05,yuto,false
+9,2025-08-05,yuto,false
+10,2025-08-05,yuto,false
+11,2025-08-05,filenametest,false
+12,2025-08-05,test,false

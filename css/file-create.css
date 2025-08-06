@@ -87,46 +87,7 @@ li {
     color: #FFFFFF;
 }
 
-/* タスク作成 ---------------------------------------------------------------- */
-
-.task-create {
-    padding: 20px;
-    border-bottom: #444444 1px solid;
-}
-
-.task-create input {
-    color: #FFFFFF;
-}
-
-.task-create input[type=date] {
-    background-color: #383838;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-}
-
-.task-create select {
-    color: #FFFFFF;
-}
-
-input#task-name {
-    width: 100%;
-    padding: 10px;
-    background-color: #ffffff;
-    color: #000000;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border: none;
-}
-
-input.task-create-a {
-    padding: 10px;
-    background-color: #ffffff;
-    color: #000000;
-    border-radius: 8px;
-    border: none;
-    justify-content:baseline;
-}
+/* ファイル作成 ---------------------------------------------------------------- */
 
 /* サイド(aside) ----------------------------------------------------------------*/
 .aside {

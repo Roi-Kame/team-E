@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>最初の画面</title>
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link rel="stylesheet" href="./css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,18 +28,18 @@
                     </ul>
                 </nav>
             </header>
-            
-            <?php $file_id = $_GET['file_id']; ?>
-            <form action="./task_complete.php" method="POST">
-                <input type="hidden" name="file-id" id="file-id" value="<?php echo $file_id ?>">
-                <input type="text" name="task-name" placeholder="タスク名を入力">
-                <input type="date" name="task-kigen" id="task-kigen">
-                <?php
-                $filename = './data/user.csv';
+            <section class="task-create">
+                <?php $file_id = $_GET['file_id']; ?>
+                <form class="task-create-a" action="./task_complete.php" method="POST">
+                    <input type="hidden" name="file-id" id="file-id" value="<?php echo $file_id ?>">
+                    <input id="task-name" type="text" name="task-name" placeholder="タスク名を入力">
+                    <input class="task-create-bottom" type="date" name="task-kigen" id="task-kigen">
+                    <?php
+                    $filename = './data/user.csv';
 
-                $fp = fopen($filename, 'r');
+                    $fp = fopen($filename, 'r');
 
-                $all_user = [];
+                    $all_user = [];
 
                 $count = 0;
                 while($record = fgetcsv($fp)){
@@ -75,7 +76,7 @@
             <?php endif; ?>
 
             <!-- ↓タスク一覧表示 -->
-            <section class="file-content-none">
+            <section class="file-content">
                 <?php
                 $filename = './data/task.csv';
 
@@ -84,24 +85,26 @@
                 $cnt = 0;
                 $task_name_lst = [];
                 while ($record = fgetcsv($fp)):
-                    if($record[0] == $file_id && $record[8] == 'false'):
+                    if ($record[0] == $file_id):
                         $task_name_lst[] = $record[2];
                         if ($cnt !== 0 && $record[8] == 'false'): ?>
-                            <ul class="file-list-item">
-                                <?php echo $record[2] ?>
-                                <!-- echoで書いてるけど<p>とかがよかったらそっちで -->
-                                <form action="./task_delete.php" method="GET">
-                                    <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                    <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                    <input type="submit" value="消去">
-                                </form>
-                            </ul>
-                <?php
+                            <div class="file-list-item">
+                                <ul>
+                                    <?php echo $record[2] ?>
+                                    <!-- echoで書いてるけど<p>とかがよかったらそっちで -->
+                                    <form action="./task_delete.php" method="GET">
+                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
+                                        <input type="submit" value="消去">
+                                    </form>
+                                </ul>
+                            </div>
+                    <?php
                         endif;
                     endif;
                     $cnt++;
                 endwhile;
-                if(empty($task_name_lst)):?>
+                if ($task_name_lst == false): ?>
                     <p>タスクはありません。</p>
                 <?php endif; ?>
             </section>
@@ -110,12 +113,14 @@
             <div class="file-box">
                 <section class="file-search">
                     <form action="./search.php" method="GET">
-                        <input type="text" name="search-text" id="search-text" placeholder="ファイル名検索">
+                        <input type="text" name="search-text" id="search-text" placeholder="🔍ファイル名検索">
                     </form>
                 </section>
                 <section class="file-create">
                     <form action="./file_create.php">
-                        <input type="submit" value="📁+">
+                        <button type="submit">
+                            <img src="img/file-create.png" alt="作成">
+                        </button>
                     </form>
                 </section>
             </div>
@@ -127,15 +132,18 @@
                 $cnt = 0;
                 while ($record = fgetcsv($fp)):
                     if ($cnt !== 0 && $record[3] == 'false'): ?>
-                        <ul class="file-list-item">
+                        <div class="file-list-item">
                             <a href="./task.php?file_id=<?php echo $record[0] ?>">
-                                <li><?php echo $record[1] ?></li>
+                                <ul>
+                                    <li><?php echo $record[1] ?></li>
+
+                                    <form action="./file_delete.php" method="GET">
+                                        <input type="hidden" name="id" value="<?php echo $record[0] ?>">
+                                        <input type="submit" value="消去">
+                                    </form>
+                                </ul>
                             </a>
-                            <form action="./file_delete.php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo $record[0] ?>">
-                                <input type="submit" value="消去">
-                            </form>
-                        </ul>
+                        </div>
                 <?php
                     endif;
                     $cnt++;

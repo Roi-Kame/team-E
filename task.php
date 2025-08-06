@@ -22,7 +22,7 @@
                         <a href="login.php">
                             <li>メンバー登録</li>
                         </a>
-                        <a href="">
+                        <a href="./member_list.php">
                             <li>メンバーリスト</li>
                         </a>
                     </ul>

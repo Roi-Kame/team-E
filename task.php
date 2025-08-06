@@ -70,7 +70,7 @@
                 </select>
                 <input type="submit" value="タスクを追加">
             </form>
-            <!-- ↓一覧表示 -->
+            <!-- ↓タスク一覧表示 -->
             <section class="file-content-none">
                 <?php
                 $filename = './data/task.csv';
@@ -80,14 +80,15 @@
                 $cnt = 0;
                 $task_name_lst = [];
                 while ($record = fgetcsv($fp)):
-                    if($record[0] == $file_id):
+                    if($record[0] == $file_id && $record[8] == 'false'):
                         $task_name_lst[] = $record[2];
                         if ($cnt !== 0 && $record[8] == 'false'): ?>
                             <ul class="file-list-item">
                                 <?php echo $record[2] ?>
                                 <!-- echoで書いてるけど<p>とかがよかったらそっちで -->
-                                <form action="./file_delete.php" method="GET">
-                                    <input type="hidden" name="id" value="<?php echo $record[0] ?>">
+                                <form action="./task_delete.php" method="GET">
+                                    <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                    <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
                                     <input type="submit" value="消去">
                                 </form>
                             </ul>
@@ -96,7 +97,7 @@
                     endif;
                     $cnt++;
                 endwhile;
-                if($task_name_lst == false):?>
+                if(empty($task_name_lst)):?>
                     <p>タスクはありません。</p>
                 <?php endif; ?>
             </section>

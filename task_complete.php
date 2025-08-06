@@ -26,16 +26,23 @@ $yuusen = $_POST['yuusen'];
 $fp = fopen($filename, 'r');
 $cnt = 0;
 $task_name_lst = [];
+$shoukyo_lst = [];
+
 while ($record = fgetcsv($fp)) {
-  if($cnt !== 0){
+  if($cnt !== 0 && $file_id == $record[0]){
     $task_name_lst[] = $record[2];
+    $shoukyo_lst[] = $record[8];
     }
   $cnt++;
 }
 
+
 if(in_array($task_name, $task_name_lst)){
-  header("Location:task.php?file_id=$file_id&error=duplicate");
-  exit;
+  $task_name_idx = array_search($task_name, $task_name_lst);
+  if($shoukyo_lst[$task_name_idx] == 'false'){
+    header("Location:task.php?file_id=$file_id&error=duplicate");
+    exit;
+  }
 }
 
 

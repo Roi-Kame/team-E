@@ -39,7 +39,7 @@ li {
     color: #FFFFFF;
 }
 
-/* 全体(main) */
+/* 全体(main) ----------------------------------------------------------------*/
 .main {
     order: 2;
     display: flex;
@@ -57,7 +57,7 @@ li {
     margin: 0 auto;
 }
 
-/* article header */
+/* 右側のヘッダー部分 ----------------------------------------------------------------*/
 .page-header {
     height: 96px;
     background-color: #444444;
@@ -87,6 +87,27 @@ li {
     color: #FFFFFF;
 }
 
+/* タスク作成 ---------------------------------------------------------------- */
+
+.task-create {
+    padding: 20px;
+    border-bottom: #444444 1px solid;
+}
+
+.task-create input {
+    color: #FFFFFF;
+}
+
+.task-create input[type=date] {
+    background-color: #383838;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.task-create select {
+    color: #FFFFFF;
+}
 
 
 /* サイド(aside) ----------------------------------------------------------------*/

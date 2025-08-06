@@ -48,7 +48,7 @@
                     $count ++;
                 }
                 fclose($fp);
-                if(empty($all_user)):?>
+                if(empty($all_user) == false):?>
                     <select name="tantou">
                         <?php foreach ($all_user as $value): ?>
                         <option hidden>担当者を選択</option>
@@ -70,6 +70,10 @@
                 </select>
                 <input type="submit" value="タスクを追加">
             </form>
+            <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
+            <p>そのタスク名は存在しているため使えません。</p>
+            <?php endif; ?>
+
             <!-- ↓タスク一覧表示 -->
             <section class="file-content-none">
                 <?php

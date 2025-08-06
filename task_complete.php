@@ -21,7 +21,7 @@ $task_name = $_POST['task-name'];
 $task_kigen = $_POST['task-kigen'];
 $tantou = $_POST['tantou'];
 $status = $_POST['status'];
-$yuusen = $_POST['yuusen'];
+$yuusen = $_POST['yuusenn'];
 
 $fp = fopen($filename, 'r');
 $cnt = 0;

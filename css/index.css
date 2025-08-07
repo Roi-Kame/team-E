@@ -229,7 +229,7 @@ input.date:hover {
     border-radius: 8px;
 }
 
-.file-search input[type="text"]:hover {
+.file-search input[type="text"]:focus {
     outline: #FFFFFF 2px solid;
 }
 

@@ -51,7 +51,7 @@ li {
 .article {
     order: 1;
     width: 72%;
-    background-color: #1E1F26;
+    background-color: #1E1E1E;
     box-sizing: border-box;
 }
 
@@ -229,7 +229,7 @@ input.date:hover {
     border-radius: 8px;
 }
 
-.file-search input[type="text"]:hover {
+.file-search input[type="text"]:focus {
     outline: #FFFFFF 2px solid;
 }
 

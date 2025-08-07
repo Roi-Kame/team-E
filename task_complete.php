@@ -24,7 +24,7 @@ $task_kigen = $_POST['task-kigen'];
 $status = $_POST['status'];
 $yuusen = $_POST['yuusenn'];
 
-$tantou_lst = $_POST['tantou'];//配列
+$tantou_lst = $_POST['tantou']; //配列
 $tantou_str = implode(",", $tantou_lst);
 
 $fp = fopen($filename, 'r');
@@ -78,19 +78,19 @@ if ($crored == "create") {
   $fp = fopen($filename, "r");
   while ($record = fgetcsv($fp)) {
     if ($record[0] !== $file_id or $record[1] !== $task_id) {
-        $all_task_date[] = $record;
+      $all_task_date[] = $record;
     }
   }
 
   fclose($fp);
 
- foreach($all_task_date as $line){
-  if($line[2] == $task_name){
+  foreach ($all_task_date as $line) {
+    if ($line[2] == $task_name) {
       header("Location:task.php?file_id=$file_id&error=duplicate");
       exit;
     }
   }
- 
+
 
   $fp = fopen($filename, 'w');
 

@@ -41,10 +41,10 @@ while ($record = fgetcsv($fp)) {
 }
 
 if($task_name == false or
-$tantou_str = false or
-$yuusen = false or 
-$status = false or
-$task_kigen = false){
+$tantou_str == false or
+$yuusen == false or 
+$status == false or
+$task_kigen == false){
   header("Location:task.php?file_id=$file_id&error=duplicate");;
 }
 

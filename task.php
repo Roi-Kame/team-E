@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
+
 <?php $file_id = $_GET['file_id']; 
 $filename = './data/file.csv'; 
 $fp = fopen($filename, 'r'); 
@@ -23,6 +24,7 @@ while($record = fgetcsv($fp)){
     $cnt ++;
 }
 ?>
+
 <body>
     <main class="main">
         <article class="article">
@@ -52,6 +54,7 @@ while($record = fgetcsv($fp)){
                     </div>
                     <div class="task-create-bottom">
                         <?php
+                        $filename = './data/user.csv';
 
                         $fp = fopen($filename, 'r');
 
@@ -66,7 +69,7 @@ while($record = fgetcsv($fp)){
                         }
                         fclose($fp);
                         if (empty($all_user) == false): ?>
-                            <select name="tantou" multiple>
+                            <select name="tantou[]" multiple>
                                 <?php foreach ($all_user as $value): ?>
                                     <option hidden>担当者を選択</option>
                                     <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
@@ -122,7 +125,11 @@ while($record = fgetcsv($fp)){
                             $task = true; ?>
                             <tr>
                                 <td class="top-left"><?php echo $record[2] ?></td>
-                                <td><?php echo $record[3] ?></td>
+                                <td><?php $tantou_str = $record[3];
+                                        $pices = explode(",", $tantou_str); 
+                                        // var_dump($pices);
+                                        foreach($pices as  $pice){
+                                            echo $pice . '<br>';} ?></td>
                                 <td>
                                     <?php
                                     $today = new DateTime();

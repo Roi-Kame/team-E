@@ -72,7 +72,7 @@
                         }
                         fclose($fp);
                         if (empty($all_user) == false): ?>
-                            <select name="tantou">
+                            <select name="tantou" multiple>
                                 <?php foreach ($all_user as $value): ?>
                                     <option hidden>担当者を選択</option>
                                     <option value="<?php echo $value; ?>"><?php echo $value; ?></option>

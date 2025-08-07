@@ -83,6 +83,7 @@ li {
 .header-nav li:hover {
     background-color: #4f4f4f;
     color: #e5e5e5;
+    border: #FFFFFF;
 }
 
 .header-nav a {

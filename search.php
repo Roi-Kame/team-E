@@ -32,7 +32,6 @@ while ($record = fgetcsv($fp_file)) {
         $all_file_records[] = $record;
     }
     $cnt++;
-    $cnt++;
 }
 fclose($fp_file);
 
@@ -131,8 +130,6 @@ foreach ($all_task_records as $record) {
                 elseif (empty($search_file_records) && !empty($search_task_records)):
                     foreach ($search_task_records as $record): 
                         $fp_file = fopen($filename_file, "r");?>
-                    foreach ($search_task_records as $record):
-                        $fp = fopen($filename_file, 'r'); ?>
                         <div class="file-list-item">
                             <a href="./task.php?file_id=<?php echo $record[0] ?>">
                                 <ul>

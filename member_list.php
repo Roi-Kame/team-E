@@ -19,19 +19,27 @@
 
     <!-- メンバー表示処理 -->
     <div class="member_list_inner">
-        <table border="1">
-            <?php
-            $filename = "./data/user.csv";
-            $fp = fopen($filename, 'r');
-            while ($member = fgetcsv($fp)) {
-                if ($member[0] == "#") {
-                    continue;
-                } else if ($member[3] == "true") {
-                    echo "<tr><td>" . $member[2] . "<form method='post'>" . "<input type='hidden' name='id' value='$member[0]'>" . "<div class='delete'><input type='submit' value='削除'>" . "</div>" . "</form>" . "</td></tr>";
-                }
-            }
-            ?>
-        </table>
+        <?php
+        $filename = "./data/user.csv";
+        $fp = fopen($filename, 'r');
+        while ($member = fgetcsv($fp)):
+            if ($member[0] == "#"):
+                continue;
+            elseif ($member[3] == "true"): ?>
+                <ul class="member-list">
+                    <li><?php echo $member[2] ?></li>
+                    <form method='post'>
+                        <input type='hidden' name='id' value=<?php echo $member[0] ?>>
+                        <div class='delete'>
+                            <input type='submit' value='削除'>
+                        </div>
+                    </form>
+                </ul>
+        <?php
+            endif;
+        endwhile;
+        fclose($fp);
+        ?>
     </div>
 
     <form action="./index.php">
@@ -68,9 +76,6 @@
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
     }
-
-
-
     ?>
 </body>
 

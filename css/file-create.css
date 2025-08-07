@@ -106,14 +106,13 @@ li {
 #file-name {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
     font-size: 24px;
-    border: none;
+    margin-bottom: 20px;
     border-radius: 8px;
     background-color: #FFFFFF;
 }
 
-#file-name:hover {
+#file-name:focus {
     outline: #FFFFFF 2px solid;
 }
 

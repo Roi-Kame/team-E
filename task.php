@@ -41,7 +41,7 @@ while($record = fgetcsv($fp)){
             </header>
 
 
-            <!-- タスク作成 --------------------------------------------------------------------- -->
+<!-- タスク作成 --------------------------------------------------------------------- -->
 
             <section class="task-create">
                 <form action="./task_complete.php" method="POST">
@@ -95,7 +95,7 @@ while($record = fgetcsv($fp)){
             </section>
 
 
-            <!-- ↓タスク一覧表示 ------------------------------------------------------- -->
+<!-- ↓タスク一覧表示 ------------------------------------------------------- -->
 
             <section class="file-content">
                 <?php
@@ -181,6 +181,7 @@ while($record = fgetcsv($fp)){
                 fclose($fp); ?>
             </section>
         </article>
+<!-- ファイル一覧表示 ------------------------------------------------------------ -->
         <aside class="aside">
             <div class="file-box">
                 <section class="file-search">

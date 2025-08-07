@@ -123,53 +123,58 @@
                     $task = false;
                     while ($record = fgetcsv($fp)):
                         if ($record[8] == 'false' && $record[0] == $file_id):
-                            $task = true; 
-                            if($record[1] == $task_id):?>
-                            <tr>
-                                <td><?php echo $record[2] ?></td>
-                                <td><?php echo $record[3] ?></td>
-                                <td>
-                                    <?php
-                                    $today = new DateTime();
-                                    $deadline = DateTime::createFromFormat('Y-m-d', $record[4]);
+                            $task = true;
+                            if ($record[1] == $task_id): ?>
+                                <tr>
+                                    <td><?php echo $record[2] ?></td>
+                                    <td><?php echo $record[3] ?></td>
+                                    <td>
+                                        <?php
+                                        $today = new DateTime();
+                                        $deadline = DateTime::createFromFormat('Y-m-d', $record[4]);
 
-                                    if ($deadline && $record[4] !== '0000-00-00') {
-                                        $deadline->setTime(0, 0, 0); // 時間を無視して日付だけ比べる
-                                        $today->setTime(0, 0, 0);
+                                        if ($deadline && $record[4] !== '0000-00-00') {
+                                            $deadline->setTime(0, 0, 0); // 時間を無視して日付だけ比べる
+                                            $today->setTime(0, 0, 0);
 
-                                        $diff = $today->diff($deadline);
-                                        $diff_days = (int)$diff->format('%r%a'); // 正負付きの差
+                                            $diff = $today->diff($deadline);
+                                            $diff_days = (int)$diff->format('%r%a'); // 正負付きの差
+                                            $md_days = $deadline->format('m-d');
 
-                                        if ($diff_days < 0) {
-                                            echo '期限切れ';
-                                        } elseif ($diff_days === 0) {
-                                            echo '今日';
+                                            if ($diff_days < 0) {
+                                                echo '期限切れ';
+                                            } elseif ($diff_days === 0) {
+                                                echo '今日';
+                                            } else {
+                                                echo $diff_days . '日';
+                                            }
                                         } else {
-                                            echo $diff_days . '日';
+                                            echo '期限未設定';
                                         }
-                                    } else {
-                                        echo '期限未設定';
-                                    }
-                                    ?>
-                                </td>
-                                <td><?php echo $record[6] ?></td>
-                                <td><?php echo $record[5] ?></td>
-                                <td>
-                                    <form action="./task.php" method="GET">
-                                        <input hidden name="file_id" value="<?php echo $file_id ?>">
-                                        <input type="submit" value="編集中止">
-                                    </form>
-                                </td>
-                                <td>
-                                    <form action="./task_delete.php" method="GET">
-                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
-                                    </form>
-                                </td>
-                            </tr>
+                                        ?>
+                                    </td>
+                                    <td><?php echo $record[6] ?></td>
+                                    <td>
+                                        <?php echo $record[5] ?><br>
+                                        <div class="bottom-input">
+                                            <form action="./task.php" method="GET">
+                                                <input hidden name="file_id" value="<?php echo $file_id ?>">
+                                                <input type="submit" value="編集中止">
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td class="top-right"><?php echo $md_days ?><br>
+                                        <div class="bottom-input task-create-submit">
+                                            <form action="./task_delete.php" method="GET">
+                                                <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                                <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
+                                                <input type="submit" value="消去">
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
                         <?php
-                        endif;
+                            endif;
                         endif;
                     endwhile;
                     if (!$task): ?>

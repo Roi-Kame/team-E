@@ -11,12 +11,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
-
+<?php $file_id = $_GET['file_id']; 
+$filename = './data/file.csv'; 
+$fp = fopen($filename, 'r'); 
+$cnt = 0;
+$file_name = '';
+while($record = fgetcsv($fp)){
+    if($cnt !== 0 && $file_id == $record[0]){
+        $file_name = $record[1];
+    }
+    $cnt ++;
+}
+?>
 <body>
     <main class="main">
         <article class="article">
             <header class="page-header wrapper">
-                <h1>ファイル名</h1>
+                <h1><?php echo $file_name ?></h1>
                 <nav>
                     <ul class="header-nav">
                         <a href="login.php">
@@ -33,7 +44,6 @@
             <!-- タスク作成 --------------------------------------------------------------------- -->
 
             <section class="task-create">
-                <?php $file_id = $_GET['file_id']; ?>
                 <form action="./task_complete.php" method="POST">
                     <input type="hidden" name="file-id" id="file-id" value="<?php echo $file_id ?>">
                     <input type="hidden" name="create-or-edit" id="create" value="create">
@@ -42,7 +52,6 @@
                     </div>
                     <div class="task-create-bottom">
                         <?php
-                        $filename = './data/user.csv';
 
                         $fp = fopen($filename, 'r');
 

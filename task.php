@@ -81,7 +81,7 @@
                     </div>
                 </form>
                 <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
-                    <p>そのタスク名は存在しているため使えません。</p>
+                    <p>そのタスク名は使えません。</p>
                 <?php endif; ?>
             </section>
 
@@ -95,14 +95,16 @@
                 $records = fgetcsv($fp);
                 ?>
                 <table>
-                    <tr>
-                        <th><?php echo $records[2]; ?></th>
-                        <th><?php echo $records[3]; ?></th>
-                        <th>残り日数</th>
-                        <th><?php echo $records[6]; ?></th>
-                        <th><?php echo $records[5]; ?></th>
-                        <th><?php echo $records[4]; ?></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th class="top-left"><?php echo $records[2]; ?></th>
+                            <th><?php echo $records[3]; ?></th>
+                            <th>残り日数</th>
+                            <th><?php echo $records[6]; ?></th>
+                            <th><?php echo $records[5]; ?></th>
+                            <th class="top-right"><?php echo $records[4]; ?></th>
+                        </tr>
+                    </thead>
                     <?php
                     date_default_timezone_set('Asia/Tokyo');
                     $task = false;
@@ -110,7 +112,7 @@
                         if ($record[8] == 'false' && $record[0] == $file_id):
                             $task = true; ?>
                             <tr>
-                                <td><?php echo $record[2] ?></td>
+                                <td class="top-left"><?php echo $record[2] ?></td>
                                 <td><?php echo $record[3] ?></td>
                                 <td>
                                     <?php
@@ -123,6 +125,7 @@
 
                                         $diff = $today->diff($deadline);
                                         $diff_days = (int)$diff->format('%r%a'); // 正負付きの差
+                                        $md_days = $deadline->format('m-d');
 
                                         if ($diff_days < 0) {
                                             echo '期限切れ';
@@ -137,33 +140,36 @@
                                     ?>
                                 </td>
                                 <td><?php echo $record[6] ?></td>
-                                <td><?php echo $record[5] ?></td>
                                 <td>
-                                    <form action="./edit_task.php" method="GET">
-                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="編集">
-                                    </form>
+                                    <?php echo $record[5] ?><br>
+                                    <div class="bottom-input">
+                                        <form action="./edit_task.php" method="GET">
+                                            <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                            <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
+                                            <input type="submit" value="編集">
+                                        </form>
+                                    </div>
                                 </td>
-                                <td>
-                                    <form action="./task_delete.php" method="GET">
-                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
-                                    </form>
+                                <td class="top-right"><?php echo $md_days ?><br>
+                                    <div class="bottom-input task-create-submit">
+                                        <form action="./task_delete.php" method="GET">
+                                            <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                            <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
+                                            <input type="submit" value="消去">
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
-                        <?php
+                    <?php
                         endif;
                     endwhile;
-                    if (!$task): ?>
-                        <tr>
-                            <td>タスクはありません。</td>
-                        </tr>
-                    <?php
-                    endif;
-                    fclose($fp); ?>
+                    ?>
                 </table>
+                <?php if (!$task): ?>
+                    <p>タスクはありません。</p>
+                <?php
+                endif;
+                fclose($fp); ?>
             </section>
         </article>
         <aside class="aside">

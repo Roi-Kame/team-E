@@ -76,12 +76,7 @@ while ($record = fgetcsv($fp)) {
                                 <?php endforeach; ?>
                             </select>
                         <?php endif ?>
-                        <select name="sort">
-                            <option hidden>並び替え</option>
-                            <option value="低">期限順</option>
-                            <option value="中">進捗状況順</option>
-                            <option value="高">優先度順</option>
-                        </select>
+
                         <select name="yuusenn">
                             <option hidden>優先度を選択</option>
                             <option value="低">低</option>
@@ -105,8 +100,15 @@ while ($record = fgetcsv($fp)) {
 
 
             <!-- ↓タスク一覧表示 ------------------------------------------------------- -->
-
             <section class="file-content">
+                <div class="sort-container">
+                    <select name="sort">
+                        <option hidden>並び替え</option>
+                        <option value="低">期限順</option>
+                        <option value="中">進捗状況順</option>
+                        <option value="高">優先度順</option>
+                    </select>
+                </div>
                 <?php
                 $filename = './data/task.csv';
                 $fp = fopen($filename, "r");

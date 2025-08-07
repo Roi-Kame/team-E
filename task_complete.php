@@ -21,9 +21,11 @@ $file_id = $_POST['file-id'];
 $task_id = $_POST['task-id'];
 $task_name = $_POST['task-name'];
 $task_kigen = $_POST['task-kigen'];
-$tantou = $_POST['tantou'];
 $status = $_POST['status'];
 $yuusen = $_POST['yuusenn'];
+
+$tantou_lst = $_POST['tantou'];//配列
+$tantou_str = implode(",", $tantou_lst);
 
 $fp = fopen($filename, 'r');
 $cnt = 0;
@@ -52,7 +54,7 @@ if ($crored == "create") {
     $file_id,
     $id,
     $task_name,
-    $tantou,
+    $tantou_str,
     $task_kigen,
     $status,
     $yuusen,

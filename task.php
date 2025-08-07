@@ -226,7 +226,7 @@ if ($sort !== null) {
                                             <form action="./task_delete.php" method="GET">
                                                 <input type="hidden" name="task_id" value="<?php echo htmlspecialchars($record[1], ENT_QUOTES, 'UTF-8'); ?>" />
                                                 <input type="hidden" name="file_id" value="<?php echo htmlspecialchars($record[0], ENT_QUOTES, 'UTF-8'); ?>" />
-                                                <input type="submit" value="消去" />
+                                                <input type="submit" value="削除" />
                                             </form>
                                         </div>
                                     </td>

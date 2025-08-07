@@ -16,26 +16,56 @@
 $st = $_GET['search-text'];
 // echo $st;
 
+// ファイル名で検索
 if ($st == "") {
     header('location:index.php');
 }
-$filename = './data/file.csv';
-$fp = fopen($filename, 'r');
+$filename_file = './data/file.csv';
 
-$all_records = [];
+$fp = fopen($filename_file, 'r');
 
+$all_file_records = [];
+
+$cnt = 0;
 while ($record = fgetcsv($fp)) {
-    $all_records[] = $record;
+    if ($cnt !== 0) {
+        $all_file_records[] = $record;
+    }
+    $cnt ++;
 }
+fclose($fp);
 
-$search_records = [];
+$filename_task = './data/task.csv';
 
-foreach ($all_records as $record) {
-    if (str_contains($record[1], $st) && $record[3] == 'false') {
-        $search_records[] = [$record[0], $record[1]];
+$fp = fopen($filename_task, 'r');
+
+$all_task_records = [];
+$cnt = 0;
+while ($record = fgetcsv($fp)) {
+    if ($cnt !== 0) {
+        $all_task_records[] = $record;
     }
 }
-// var_dump($search_records)
+fclose($fp);
+
+$search_file_records = [];
+$search_task_records = [];
+
+foreach ($all_file_records as $record) {
+    if (str_contains($record[1], $st) && $record[3] == 'false') {
+        $search_file_records[] = [$record[0], $record[1]];
+    }
+}
+
+foreach ($all_task_records as $record) {
+    if ((str_contains($record[2], $st) && $record[8] == 'false') or  (str_contains($record[3], $st) && $record[8] == 'false') or (str_contains($record[5], $st) && $record[8] == 'false') or (str_contains($record[6], $st) && $record[8] == 'false')){
+        $search_task_records[] = [$record[0], $record[1]];
+    }
+}
+
+// var_dump($search_file_records);
+// var_dump($search_task_records);
+
 ?>
 
 <body>
@@ -59,7 +89,7 @@ foreach ($all_records as $record) {
                 <p>ファイルを選択してください</p>
             </section>
         </article>
-<!-- ファイル一覧表示 ------------------------------------------------------------ -->
+        <!-- ファイル一覧表示 ------------------------------------------------------------ -->
         <aside class="aside">
             <div class="file-box">
                 <section class="file-search">
@@ -77,12 +107,11 @@ foreach ($all_records as $record) {
             </div>
             <section class="file-list">
                 <?php
-                $count = 0;
 
-                if ($search_records == false): ?>
+                if (empty($search_file_records) && empty($search_task_records)): ?>
                     <p>条件に一致するファイルはありません</p>
-                    <?php else:
-                    foreach ($search_records as $record): ?>
+                    <?php elseif (!empty($search_file_records) && empty($search_task_records)):
+                    foreach ($search_file_records as $record): ?>
                         <div class="file-list-item">
                             <a href="./task.php?file_id=<?php echo $record[0] ?>">
                                 <ul>
@@ -95,9 +124,68 @@ foreach ($all_records as $record) {
                                 </ul>
                             </a>
                         </div>
-                <?php
-                        $count++;
+                    <?php
                     endforeach;
+                elseif (empty($search_file_records) && !empty($search_task_records)):
+                    foreach ($search_task_records as $record): 
+                        $fp = fopen($filename_file, 'r');?>
+                        <div class="file-list-item">
+                            <a href="./task.php?file_id=<?php echo $record[0] ?>">
+                                <ul>
+                                    <li><?php 
+                                        while ($file_line = fgetcsv($fp)) {
+                                            if ($record[0] == $file_line[0]) {
+                                                echo $file_line[1];
+                                            }
+                                        } ?></li>
+
+                                    <form action="./file_delete.php" method="GET">
+                                        <input type="hidden" name="id" value="<?php echo $record[0] ?>">
+                                        <input type="submit" value="消去">
+                                    </form>
+                                </ul>
+                            </a>
+                        </div>
+
+                    <?php fclose($fp);
+                     endforeach;
+                elseif (!empty($search_file_records) && !empty($search_task_records)):
+                    foreach ($search_file_records as $record): ?>
+                        <div class="file-list-item">
+                            <a href="./task.php?file_id=<?php echo $record[0] ?>">
+                                <ul>
+                                    <li><?php echo $record[1] ?></li>
+
+                                    <form action="./file_delete.php" method="GET">
+                                        <input type="hidden" name="id" value="<?php echo $record[0] ?>">
+                                        <input type="submit" value="消去">
+                                    </form>
+                                </ul>
+                            </a>
+                        </div>
+                    <?php
+                    endforeach;
+                    foreach ($search_task_records as $record): 
+                    $fp = fopen($filename_file, 'r');?>
+                        <div class="file-list-item">
+                            <a href="./task.php?file_id=<?php echo $record[0] ?>">
+                                <ul>
+                                    <li><?php
+                                        while ($file_line = fgetcsv($fp)) {
+                                            if ($record[0] == $file_line[0]) {
+                                                echo $file_line[1];
+                                            }
+                                        } ?></li>
+
+                                    <form action="./file_delete.php" method="GET">
+                                        <input type="hidden" name="id" value="<?php echo $record[0] ?>">
+                                        <input type="submit" value="消去">
+                                    </form>
+                                </ul>
+                            </a>
+                        </div>
+                <?php fclose($fp);
+                endforeach;
                 endif; ?>
             </section>
         </aside>

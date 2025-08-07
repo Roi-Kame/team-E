@@ -22,31 +22,32 @@ if ($st == "") {
 }
 $filename_file = './data/file.csv';
 
-$fp = fopen($filename_file, 'r');
+$fp_file = fopen($filename_file, 'r');
 
 $all_file_records = [];
 
 $cnt = 0;
-while ($record = fgetcsv($fp)) {
+while ($record = fgetcsv($fp_file)) {
     if ($cnt !== 0) {
         $all_file_records[] = $record;
     }
-    $cnt ++;
+    $cnt++;
 }
-fclose($fp);
+fclose($fp_file);
 
 $filename_task = './data/task.csv';
 
-$fp = fopen($filename_task, 'r');
+$fp_task = fopen($filename_task, 'r');
 
 $all_task_records = [];
 $cnt = 0;
-while ($record = fgetcsv($fp)) {
+while ($record = fgetcsv($fp_task)) {
     if ($cnt !== 0) {
         $all_task_records[] = $record;
     }
+    $cnt++;
 }
-fclose($fp);
+fclose($fp_task);
 
 $search_file_records = [];
 $search_task_records = [];
@@ -58,7 +59,7 @@ foreach ($all_file_records as $record) {
 }
 
 foreach ($all_task_records as $record) {
-    if ((str_contains($record[2], $st) && $record[8] == 'false') or  (str_contains($record[3], $st) && $record[8] == 'false') or (str_contains($record[5], $st) && $record[8] == 'false') or (str_contains($record[6], $st) && $record[8] == 'false')){
+    if ((str_contains($record[2], $st) && $record[8] == 'false') or  (str_contains($record[3], $st) && $record[8] == 'false') or (str_contains($record[5], $st) && $record[8] == 'false') or (str_contains($record[6], $st) && $record[8] == 'false')) {
         $search_task_records[] = [$record[0], $record[1]];
     }
 }
@@ -128,12 +129,12 @@ foreach ($all_task_records as $record) {
                     endforeach;
                 elseif (empty($search_file_records) && !empty($search_task_records)):
                     foreach ($search_task_records as $record): 
-                        $fp = fopen($filename_file, 'r');?>
+                        $fp_file = fopen($filename_file, "r");?>
                         <div class="file-list-item">
                             <a href="./task.php?file_id=<?php echo $record[0] ?>">
                                 <ul>
-                                    <li><?php 
-                                        while ($file_line = fgetcsv($fp)) {
+                                    <li><?php
+                                        while ($file_line = fgetcsv($fp_file)) {
                                             if ($record[0] == $file_line[0]) {
                                                 echo $file_line[1];
                                             }
@@ -146,9 +147,9 @@ foreach ($all_task_records as $record) {
                                 </ul>
                             </a>
                         </div>
-
-                    <?php fclose($fp);
-                     endforeach;
+                    <?php
+                    fclose($fp_file);
+                    endforeach;
                 elseif (!empty($search_file_records) && !empty($search_task_records)):
                     foreach ($search_file_records as $record): ?>
                         <div class="file-list-item">
@@ -166,12 +167,12 @@ foreach ($all_task_records as $record) {
                     <?php
                     endforeach;
                     foreach ($search_task_records as $record): 
-                    $fp = fopen($filename_file, 'r');?>
+                        $fp_file = fopen($filename_file, "r");?>
                         <div class="file-list-item">
                             <a href="./task.php?file_id=<?php echo $record[0] ?>">
                                 <ul>
                                     <li><?php
-                                        while ($file_line = fgetcsv($fp)) {
+                                        while ($file_line = fgetcsv($fp_file)) {
                                             if ($record[0] == $file_line[0]) {
                                                 echo $file_line[1];
                                             }
@@ -184,8 +185,9 @@ foreach ($all_task_records as $record) {
                                 </ul>
                             </a>
                         </div>
-                <?php fclose($fp);
-                endforeach;
+                <?php
+                    fclose($fp_fiile);
+                    endforeach;
                 endif; ?>
             </section>
         </aside>

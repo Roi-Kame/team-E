@@ -22,6 +22,11 @@
                 <input type="submit" value="登録">
             </div>
         </form>
+        <form action="./index.php">
+            <div class="form-container">
+                <input type="submit" value="前の画面に戻る">
+            </div>
+        </form>
     </div>
     <?php
     // ユーザーネーム入力を受け取りcsvに保存(新規登録)

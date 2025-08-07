@@ -168,7 +168,7 @@
                                             <form action="./task_delete.php" method="GET">
                                                 <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
                                                 <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                                <input type="submit" value="消去">
+                                                <input type="submit" value="削除">
                                             </form>
                                         </div>
                                     </td>

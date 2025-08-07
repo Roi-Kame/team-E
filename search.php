@@ -31,7 +31,7 @@ while ($record = fgetcsv($fp)) {
     if ($cnt !== 0) {
         $all_file_records[] = $record;
     }
-    $cnt ++;
+    $cnt++;
 }
 fclose($fp);
 
@@ -58,7 +58,7 @@ foreach ($all_file_records as $record) {
 }
 
 foreach ($all_task_records as $record) {
-    if ((str_contains($record[2], $st) && $record[8] == 'false') or  (str_contains($record[3], $st) && $record[8] == 'false') or (str_contains($record[5], $st) && $record[8] == 'false') or (str_contains($record[6], $st) && $record[8] == 'false')){
+    if ((str_contains($record[2], $st) && $record[8] == 'false') or  (str_contains($record[3], $st) && $record[8] == 'false') or (str_contains($record[5], $st) && $record[8] == 'false') or (str_contains($record[6], $st) && $record[8] == 'false')) {
         $search_task_records[] = [$record[0], $record[1]];
     }
 }
@@ -119,7 +119,7 @@ foreach ($all_task_records as $record) {
 
                                     <form action="./file_delete.php" method="GET">
                                         <input type="hidden" name="id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
+                                        <input type="submit" value="削除">
                                     </form>
                                 </ul>
                             </a>
@@ -127,46 +127,8 @@ foreach ($all_task_records as $record) {
                     <?php
                     endforeach;
                 elseif (empty($search_file_records) && !empty($search_task_records)):
-                    foreach ($search_task_records as $record): 
-                        $fp = fopen($filename_file, 'r');?>
-                        <div class="file-list-item">
-                            <a href="./task.php?file_id=<?php echo $record[0] ?>">
-                                <ul>
-                                    <li><?php 
-                                        while ($file_line = fgetcsv($fp)) {
-                                            if ($record[0] == $file_line[0]) {
-                                                echo $file_line[1];
-                                            }
-                                        } ?></li>
-
-                                    <form action="./file_delete.php" method="GET">
-                                        <input type="hidden" name="id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
-                                    </form>
-                                </ul>
-                            </a>
-                        </div>
-
-                    <?php fclose($fp);
-                     endforeach;
-                elseif (!empty($search_file_records) && !empty($search_task_records)):
-                    foreach ($search_file_records as $record): ?>
-                        <div class="file-list-item">
-                            <a href="./task.php?file_id=<?php echo $record[0] ?>">
-                                <ul>
-                                    <li><?php echo $record[1] ?></li>
-
-                                    <form action="./file_delete.php" method="GET">
-                                        <input type="hidden" name="id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
-                                    </form>
-                                </ul>
-                            </a>
-                        </div>
-                    <?php
-                    endforeach;
-                    foreach ($search_task_records as $record): 
-                    $fp = fopen($filename_file, 'r');?>
+                    foreach ($search_task_records as $record):
+                        $fp = fopen($filename_file, 'r'); ?>
                         <div class="file-list-item">
                             <a href="./task.php?file_id=<?php echo $record[0] ?>">
                                 <ul>
@@ -179,13 +141,51 @@ foreach ($all_task_records as $record) {
 
                                     <form action="./file_delete.php" method="GET">
                                         <input type="hidden" name="id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
+                                        <input type="submit" value="削除">
+                                    </form>
+                                </ul>
+                            </a>
+                        </div>
+
+                    <?php fclose($fp);
+                    endforeach;
+                elseif (!empty($search_file_records) && !empty($search_task_records)):
+                    foreach ($search_file_records as $record): ?>
+                        <div class="file-list-item">
+                            <a href="./task.php?file_id=<?php echo $record[0] ?>">
+                                <ul>
+                                    <li><?php echo $record[1] ?></li>
+
+                                    <form action="./file_delete.php" method="GET">
+                                        <input type="hidden" name="id" value="<?php echo $record[0] ?>">
+                                        <input type="submit" value="削除">
+                                    </form>
+                                </ul>
+                            </a>
+                        </div>
+                    <?php
+                    endforeach;
+                    foreach ($search_task_records as $record):
+                        $fp = fopen($filename_file, 'r'); ?>
+                        <div class="file-list-item">
+                            <a href="./task.php?file_id=<?php echo $record[0] ?>">
+                                <ul>
+                                    <li><?php
+                                        while ($file_line = fgetcsv($fp)) {
+                                            if ($record[0] == $file_line[0]) {
+                                                echo $file_line[1];
+                                            }
+                                        } ?></li>
+
+                                    <form action="./file_delete.php" method="GET">
+                                        <input type="hidden" name="id" value="<?php echo $record[0] ?>">
+                                        <input type="submit" value="削除">
                                     </form>
                                 </ul>
                             </a>
                         </div>
                 <?php fclose($fp);
-                endforeach;
+                    endforeach;
                 endif; ?>
             </section>
         </aside>

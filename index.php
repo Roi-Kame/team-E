@@ -16,7 +16,7 @@
     <main class="main">
         <article class="article">
             <header class="page-header wrapper">
-                <h1>ファイル名</h1>
+                <h1>ファイル未選択</h1>
                 <nav>
                     <ul class="header-nav">
                         <a href="login.php">

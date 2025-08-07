@@ -118,8 +118,9 @@ li {
     background-color: #555555;
 }
 
-.task-create input,select {
-    height: 55px; 
+.task-create input,
+select {
+    height: 55px;
 }
 
 input.task-name {
@@ -143,7 +144,7 @@ input.date:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
 }
 
@@ -158,13 +159,35 @@ input.date:hover {
     width: 100%;
     table-layout: fixed;
     border-collapse: separate;
-    border-spacing: 0 20px; 
+    border-spacing: 0 20px;
 }
 
-.file-content th, .file-content td {
+.file-content th,
+.file-content td {
+    vertical-align: top;
     text-align: center;
     background-color: #2C2C2C;
     padding: 10px 0px;
+}
+
+.bottom-input {
+    width: 100%;
+    padding-top: 10px;
+}
+
+.bottom-input input[type="submit"] {
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: #444444;
+    border-radius: 8px;
+}
+
+.bottom-input input[type="submit"]:hover {
+    background-color: #555555;
+}
+
+.task-create-submit {
+    padding-top: 16px;
 }
 
 .top-left {

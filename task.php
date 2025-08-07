@@ -125,6 +125,7 @@
 
                                         $diff = $today->diff($deadline);
                                         $diff_days = (int)$diff->format('%r%a'); // 正負付きの差
+                                        $md_days = $deadline->format('m-d');
 
                                         if ($diff_days < 0) {
                                             echo '期限切れ';
@@ -139,20 +140,24 @@
                                     ?>
                                 </td>
                                 <td><?php echo $record[6] ?></td>
-                                <td><?php echo $record[5] ?></td>
                                 <td>
-                                    <form action="./edit_task.php" method="GET">
-                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="編集">
-                                    </form>
+                                    <?php echo $record[5] ?><br>
+                                    <div class="bottom-input">
+                                        <form action="./edit_task.php" method="GET">
+                                            <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                            <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
+                                            <input type="submit" value="編集">
+                                        </form>
+                                    </div>
                                 </td>
-                                <td class="top-right">
-                                    <form action="./task_delete.php" method="GET">
-                                        <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
-                                        <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
-                                    </form>
+                                <td class="top-right"><?php echo $md_days ?><br>
+                                    <div class="bottom-input task-create-submit">
+                                        <form action="./task_delete.php" method="GET">
+                                            <input type="hidden" name="task_id" value="<?php echo $record[1] ?>">
+                                            <input type="hidden" name="file_id" value="<?php echo $record[0] ?>">
+                                            <input type="submit" value="消去">
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                     <?php

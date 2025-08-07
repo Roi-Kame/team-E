@@ -16,7 +16,7 @@
     <main class="main">
         <article class="article">
             <header class="page-header wrapper">
-                <h1>ファイル名</h1>
+                <h1>ファイル作成</h1>
                 <nav>
                     <ul class="header-nav">
                         <a href="login.php">
@@ -34,7 +34,7 @@
                     <form onsubmit="return create_file()" action="./file_complete.php" method="post">
 
                         <label class="label-faile-name" for="file-name">ファイル名</label>
-                        <input type="text" name="file-name" id="file-name">
+                        <input type="text" placeholder="ファイル名を入力" name="file-name" id="file-name">
                         <label id="error" for="error" style="display: none">ファイル名を入力してください</label>
 
                         <input class="button-file-make" type="submit" value="ファイル作成">

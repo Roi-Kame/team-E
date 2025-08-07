@@ -83,6 +83,7 @@ li {
 .header-nav li:hover {
     background-color: #4f4f4f;
     color: #e5e5e5;
+    outline: #A6A6A6 1px solid;
 }
 
 .header-nav a {
@@ -105,6 +106,7 @@ li {
 
 .task-create input[type="submit"]:hover {
     background-color: #555555;
+    outline: #A6A6A6 1px solid;
 }
 
 .task-create select {
@@ -116,6 +118,7 @@ li {
 
 .task-create select:hover {
     background-color: #555555;
+    outline: #A6A6A6 1px solid;
 }
 
 .task-create input,
@@ -131,6 +134,7 @@ input.task-name {
 
 input.date:hover {
     background-color: #555555;
+    outline: #A6A6A6 1px solid;
 }
 
 .task-create-top {
@@ -184,6 +188,7 @@ input.date:hover {
 
 .bottom-input input[type="submit"]:hover {
     background-color: #555555;
+    outline: #A6A6A6 1px solid;
 }
 
 .task-create-submit {
@@ -210,6 +215,7 @@ input.date:hover {
 .file-box {
     border-bottom: #444444 1px solid;
     display: flex;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
     padding: 20px 10px;
@@ -223,15 +229,24 @@ input.date:hover {
     border-radius: 8px;
 }
 
+.file-search input[type="text"]:hover {
+    outline: #FFFFFF 2px solid;
+}
+
 .file-create button {
     padding: 10px;
-    background-color: #2C2C2C;
+    background-color: #555555;
     display: inline-block;
     line-height: 0;
+    border-radius: 8px;
 }
 
 .file-create button img {
     width: 100%;
+}
+
+.file-create button:hover {
+    outline: #A6A6A6 1px solid;
 }
 
 .file-list {
@@ -256,6 +271,7 @@ input.date:hover {
 
 .file-list-item ul:hover {
     background-color: #444444;
+    outline: #A6A6A6 1px solid;
 }
 
 .file-list-item li {
@@ -265,11 +281,12 @@ input.date:hover {
 .file-list-item input[type="submit"] {
     padding: 10px;
     color: #FFFFFF;
-    background-color: #2C2C2C;
+    background-color: #555555;
     font-size: 24px;
     border-radius: 8px;
 }
 
 .file-list-item input[type="submit"]:hover {
     background-color: #383838;
+    outline: #A6A6A6 1px solid;
 }

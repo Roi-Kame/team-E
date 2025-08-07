@@ -63,7 +63,7 @@
 
                                     <form action="./file_delete.php" method="GET">
                                         <input type="hidden" name="id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
+                                        <input type="submit" value="削除">
                                     </form>
                                 </ul>
                             </a>

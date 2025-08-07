@@ -12,16 +12,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 
-<?php $file_id = $_GET['file_id']; 
-$filename = './data/file.csv'; 
-$fp = fopen($filename, 'r'); 
+<?php $file_id = $_GET['file_id'];
+$filename = './data/file.csv';
+$fp = fopen($filename, 'r');
 $cnt = 0;
 $file_name = '';
-while($record = fgetcsv($fp)){
-    if($cnt !== 0 && $file_id == $record[0]){
+while ($record = fgetcsv($fp)) {
+    if ($cnt !== 0 && $file_id == $record[0]) {
         $file_name = $record[1];
     }
-    $cnt ++;
+    $cnt++;
 }
 ?>
 
@@ -43,7 +43,7 @@ while($record = fgetcsv($fp)){
             </header>
 
 
-<!-- タスク作成 --------------------------------------------------------------------- -->
+            <!-- タスク作成 --------------------------------------------------------------------- -->
 
             <section class="task-create">
                 <form action="./task_complete.php" method="POST">
@@ -76,6 +76,12 @@ while($record = fgetcsv($fp)){
                                 <?php endforeach; ?>
                             </select>
                         <?php endif ?>
+                        <select name="sort">
+                            <option hidden>並び替え</option>
+                            <option value="低">期限順</option>
+                            <option value="中">進捗状況順</option>
+                            <option value="高">優先度順</option>
+                        </select>
                         <select name="yuusenn">
                             <option hidden>優先度を選択</option>
                             <option value="低">低</option>
@@ -98,7 +104,7 @@ while($record = fgetcsv($fp)){
             </section>
 
 
-<!-- ↓タスク一覧表示 ------------------------------------------------------- -->
+            <!-- ↓タスク一覧表示 ------------------------------------------------------- -->
 
             <section class="file-content">
                 <?php
@@ -126,10 +132,11 @@ while($record = fgetcsv($fp)){
                             <tr>
                                 <td class="top-left"><?php echo $record[2] ?></td>
                                 <td><?php $tantou_str = $record[3];
-                                        $pices = explode(",", $tantou_str); 
-                                        // var_dump($pices);
-                                        foreach($pices as  $pice){
-                                            echo $pice . '<br>';} ?></td>
+                                    $pices = explode(",", $tantou_str);
+                                    // var_dump($pices);
+                                    foreach ($pices as  $pice) {
+                                        echo $pice . '<br>';
+                                    } ?></td>
                                 <td>
                                     <?php
                                     $today = new DateTime();
@@ -188,7 +195,7 @@ while($record = fgetcsv($fp)){
                 fclose($fp); ?>
             </section>
         </article>
-<!-- ファイル一覧表示 ------------------------------------------------------------ -->
+        <!-- ファイル一覧表示 ------------------------------------------------------------ -->
         <aside class="aside">
             <div class="file-box">
                 <section class="file-search">
@@ -219,7 +226,7 @@ while($record = fgetcsv($fp)){
 
                                     <form action="./file_delete.php" method="GET">
                                         <input type="hidden" name="id" value="<?php echo $record[0] ?>">
-                                        <input type="submit" value="消去">
+                                        <input type="submit" value="削除">
                                     </form>
                                 </ul>
                             </a>

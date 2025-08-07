@@ -25,7 +25,6 @@ $status = $_POST['status'];
 $yuusen = $_POST['yuusenn'];
 
 $tantou_lst = $_POST['tantou']; //配列
-$tantou_str = implode(",", $tantou_lst);
 
 $fp = fopen($filename, 'r');
 $cnt = 0;
@@ -40,6 +39,16 @@ while ($record = fgetcsv($fp)) {
   }
   $cnt++;
 }
+
+if($task_name == false or
+$tantou_str = false or
+$yuusen = false or 
+$status = false or
+$task_kigen = false){
+  header("Location:task.php?file_id=$file_id&error=duplicate");;
+}
+
+$tantou_str = implode(",", $tantou_lst);
 
 if ($crored == "create") {
   if (in_array($task_name, $task_name_lst)) {

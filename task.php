@@ -135,7 +135,7 @@ if ($sort !== null) {
                     </div>
                 </form>
                 <?php if (isset($_GET['error']) && $_GET['error'] === 'duplicate'): ?>
-                    <p>そのタスク名は使えません。</p>
+                    <p>使用済みのタスク名もしくは入力値がありません</p>
                 <?php endif; ?>
             </section>
 

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <title>新規登録</title>
     <!-- git pull origin main コミットする前のお約束 -->
 </head>
@@ -20,12 +23,12 @@
                 <input type="text" id="username" name="username" laceholder="name" placeholder="name">
                 <p id="error" style="display:none;">ユーザーネームを入力してください</p>
                 <br>
-                <input type="submit" value="登録">
+                <input class="login-button" type="submit" value="登録">
             </div>
         </form>
         <form action="./index.php">
-            <div class="form-container">
-                <input type="submit" value="前の画面に戻る">
+            <div class="back-container">
+                <input class="back-button" type="submit" value="前の画面に戻る">
             </div>
         </form>
     </div>
